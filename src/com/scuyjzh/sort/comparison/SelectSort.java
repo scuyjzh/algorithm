@@ -1,4 +1,4 @@
-package com.scuyjzh.sort;
+package com.scuyjzh.sort.comparison;
 
 import java.util.Arrays;
 
