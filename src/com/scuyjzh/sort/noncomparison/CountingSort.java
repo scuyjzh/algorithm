@@ -3,10 +3,16 @@ package com.scuyjzh.sort.noncomparison;
 import java.util.*;
 
 /**
+ * 计数排序（Counting sort）是一种稳定的线性时间排序算法。算法的步骤如下：
+ * 1.找出待排序的数组中最大和最小的元素
+ * 2.统计数组中每个值为i的元素出现的次数，存入数组C的第i项
+ * 3.对所有的计数累加（从C中的第一个元素开始，每一项和前一项相加）
+ * 4.反向填充目标数组：将每个元素i放在新数组的第C[i]项，每放一个元素就将C[i]减去1
+ *
  * @author scuyjzh
  * @date 2020/8/10 15:57
  */
-public class CountingSort {
+class CountingSort {
     public int[] sort(int[] a) {
         int b[] = new int[a.length];
         int max = a[0], min = a[0];

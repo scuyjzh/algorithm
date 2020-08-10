@@ -1,13 +1,16 @@
 package com.scuyjzh.sort.noncomparison;
 
-
 import java.util.*;
 
 /**
+ * 基数排序是一种非比较型整数排序算法，其原理是将整数按位数切割成不同的数字，然后按每个位数分别比较。
+ * 它是这样实现的：将所有待比较数值（正整数）统一为同样的数位长度，数位较短的数前面补零。然后，从最低位开始，依次进行一次排序。这样从最低位排序一直到最高位排序完成以后，数列就变成一个有序序列。
+ * 基数排序的方式可以采用LSD（Least significant digital）或MSD（Most significant digital），LSD的排序方式由键值的最右边开始，而MSD则相反，由键值的最左边开始。
+ *
  * @author scuyjzh
  * @date 2020/8/7 15:27
  */
-public class RadixSort {
+class RadixSort {
     public void sort(int[] arr) {
         // 得到数组中最大的数的位数
         int max = arr[0];
