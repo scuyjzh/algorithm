@@ -4,7 +4,7 @@ package com.scuyjzh.sort.noncomparison;
 import java.util.*;
 
 /**
- * @author zhangyijie
+ * @author scuyjzh
  * @date 2020/8/7 15:27
  */
 public class RadixSort {
