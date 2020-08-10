@@ -8,43 +8,52 @@ import java.util.*;
  * @date 2020/8/7 15:27
  */
 public class RadixSort {
-    public void sort(int[] arr, int radix, int d) {
-        // 临时数组
-        int[] tempArray = new int[arr.length];
-        // count用于记录待排序元素的信息,用来表示该位是i的数的个数
-        int[] count = new int[radix];
+    public void sort(int[] arr) {
+        // 得到数组中最大的数的位数
+        int max = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+        int maxLength = String.valueOf(max).length();
 
-        int rate = 1;
-        for (int i = 0; i < d; i++) {
-            // 重置count数组，开始统计下一个关键字
-            Arrays.fill(count, 0);
-            // 将array中的元素完全复制到tempArray数组中
-            System.arraycopy(arr, 0, tempArray, 0, arr.length);
-
-            // 计算每个待排序数据的子关键字
+		/*
+			定义一个二维数组，表示10个桶，每个桶就是一个一维数组
+			1.二维数组包好10个一维数组
+			2.为了防止放入数据时溢出，规定每个桶的大小为 arr.length
+			3.基数排序是使用空间换时间的经典算法
+	    */
+        int[][] bucket = new int[10][arr.length];
+        // 为了记录每个桶中实际上放了多少个数据，定义一个一维数组来记录各个桶的每次放入数据的个数
+        int[] bucketElementCounts = new int[10];
+        for (int i = 0, n = 1; i < maxLength; i++, n *= 10) {
+            // 往桶中存数据，第一次是个位，第二次是十位，依次类推
             for (int j = 0; j < arr.length; j++) {
-                int subKey = (tempArray[j] / rate) % radix;
-                count[subKey]++;
+                // 取对应位置上的数
+                int digitOfElement = arr[j] / n % 10;
+                bucket[digitOfElement][bucketElementCounts[digitOfElement]] = arr[j];
+                bucketElementCounts[digitOfElement]++;
             }
-            // 统计count数组的前j位（包含j）共有多少个数
-            for (int j = 1; j < radix; j++) {
-                count[j] = count[j] + count[j - 1];
+            // 按照桶的顺序取数据
+            int index = 0;
+            for (int k = 0; k < bucketElementCounts.length; k++) {
+                // 当桶中有数据
+                if (bucketElementCounts[k] != 0) {
+                    for (int l = 0; l < bucketElementCounts[k]; l++) {
+                        arr[index++] = bucket[k][l];
+                    }
+                }
+                // 从桶中取完数据后将其数据个数置为0
+                bucketElementCounts[k] = 0;
             }
-            // 按子关键字对指定的数据进行排序 ，因为开始是从前往后放，现在从后忘前读取，保证基数排序的稳定性
-            for (int m = arr.length - 1; m >= 0; m--) {
-                //插 入到第--count[subKey]位，因为数组下标从0开始
-                int subKey = (tempArray[m] / rate) % radix;
-                arr[--count[subKey]] = tempArray[m];
-            }
-            // 前进一位
-            rate *= radix;
         }
     }
 
     public static void main(String[] args) {
         int[] arr = new int[]{1200, 292, 121, 72, 233, 44, 12};
         RadixSort radixSort = new RadixSort();
-        radixSort.sort(arr, 10, 4);
+        radixSort.sort(arr);
         System.out.println(Arrays.toString(arr));
     }
 }
