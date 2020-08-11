@@ -47,11 +47,6 @@ class BucketSort {
 
     }
 
-    /**
-     * 插入排序实现
-     *
-     * @param bucket
-     */
     private void insertionSort(List<Integer> bucket) {
         for (int i = 1; i < bucket.size(); i++) {
             int temp = bucket.get(i);

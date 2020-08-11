@@ -14,7 +14,7 @@ import java.util.*;
  */
 class CountingSort {
     public int[] sort(int[] a) {
-        int b[] = new int[a.length];
+        int[] b = new int[a.length];
         int max = a[0], min = a[0];
         for (int i : a) {
             if (i > max) {
@@ -26,7 +26,7 @@ class CountingSort {
         }
         // 这里k的大小是要排序的数组中，元素大小的极值差+1
         int k = max - min + 1;
-        int c[] = new int[k];
+        int[] c = new int[k];
         for (int i = 0; i < a.length; ++i) {
             // 优化过的地方，减小了数组c的大小
             c[a[i] - min] += 1;
