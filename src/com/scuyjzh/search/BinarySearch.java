@@ -26,4 +26,11 @@ class BinarySearch {
         }
         return -1;
     }
+
+    public static void main(String[] args) {
+        int[] arr = new int[]{1, 3, 5, 7, 21, 23, 35};
+        BinarySearch binarySearch = new BinarySearch();
+        int res = binarySearch.search(arr, 21);
+        System.out.println(res);
+    }
 }
