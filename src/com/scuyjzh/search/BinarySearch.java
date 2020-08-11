@@ -1,30 +1,31 @@
 package com.scuyjzh.search;
 
 /**
+ * 二分查找算法是一种在有序数组中查找某一特定元素的搜索算法。
+ * 搜索过程从数组的中间元素开始，如果中间元素正好是要查找的元素，则搜索过程结束；
+ * 如果某一特定元素大于或者小于中间元素，则在数组大于或小于中间元素的那一半中查找，而且跟开始一样从中间元素开始比较。如果在某一步骤数组为空，则代表找不到。
+ * 这种搜索算法每一次比较都使搜索范围缩小一半。
+ *
  * @author scuyjzh
  * @date 2020/6/29 11:25
  */
 class BinarySearch {
-    public int search(int[] arr, int target) {
-        int low = 0, high = arr.length - 1, mid;
-        if (target < arr[low] || target > arr[high] || low > high) {
-            return -1;
-        }
-
+    public int search(int[] arr, int key) {
+        int low = 0, high = arr.length - 1;
         while (low <= high) {
-            // mid = (high + low) / 2; // 大数相加会溢出
-            mid = low + (high - low) / 2;
-            if (arr[mid] > target) {
-                // 比关键字大则关键字在左区域
-                high = mid - 1;
-            } else if (arr[mid] < target) {
-                // 比关键字小则关键字在右区域
+            int mid = low + ((high - low) / 2);
+            int midVal = arr[mid];
+            if (midVal < key) {
                 low = mid + 1;
+            } else if (midVal > key) {
+                high = mid - 1;
             } else {
+                // key found
                 return mid;
             }
         }
-        return -1;
+        // key not found
+        return -(low + 1);
     }
 
     public static void main(String[] args) {
