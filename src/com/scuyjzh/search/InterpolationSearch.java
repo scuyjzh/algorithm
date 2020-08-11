@@ -9,7 +9,7 @@ package com.scuyjzh.search;
  * @author scuyjzh
  * @date 2020/8/11 16:03
  */
-public class InterpolationSearch {
+class InterpolationSearch {
     public int search(int[] arr, int key) {
         int low = 0, high = arr.length - 1;
         while (low <= high) {
