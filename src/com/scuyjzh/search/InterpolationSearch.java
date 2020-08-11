@@ -41,9 +41,9 @@ class InterpolationSearch {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[]{1, 3, 5, 7, 21, 23, 35};
+        int[] arr = new int[]{1, 4, 6, 9, 11, 66, 78};
         InterpolationSearch interpolationSearch = new InterpolationSearch();
-        int res = interpolationSearch.search(arr, 21);
+        int res = interpolationSearch.search(arr, 11);
         System.out.println(res);
     }
 }
