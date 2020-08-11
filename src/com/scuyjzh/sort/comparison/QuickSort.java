@@ -21,17 +21,10 @@ class QuickSort {
                 || len == 1) {
             return;
         }
-        sort(array, 0, len - 1);
+        quickSort(array, 0, len - 1);
     }
 
-    /**
-     * 快排核心算法，递归实现
-     *
-     * @param array
-     * @param left
-     * @param right
-     */
-    private void sort(int[] array, int left, int right) {
+    private void quickSort(int[] array, int left, int right) {
         if (left > right) {
             return;
         }
@@ -62,8 +55,8 @@ class QuickSort {
 
         // 递归，继续向基准的左右两边执行和上面同样的操作
         // i的索引处为上面已确定好的基准值的位置，无需再处理
-        sort(array, left, i - 1);
-        sort(array, i + 1, right);
+        quickSort(array, left, i - 1);
+        quickSort(array, i + 1, right);
     }
 
     public static void main(String[] args) {

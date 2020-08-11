@@ -9,7 +9,7 @@ import java.util.Arrays;
  * 2.但插入排序一般来说是低效的，因为插入排序每次只能将数据移动一位
  *
  * @author scuyjzh
- * @data 2020/6/30 23:36
+ * @date 2020/6/30 23:36
  */
 class ShellSort {
     public void sort(int[] arr) {

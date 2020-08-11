@@ -13,7 +13,7 @@ import java.util.Arrays;
  * 6.重复步骤2~5
  *
  * @author scuyjzh
- * @data 2020/6/30 23:12
+ * @date 2020/6/30 23:12
  */
 class InsertionSort {
     public void sort(int[] arr) {
