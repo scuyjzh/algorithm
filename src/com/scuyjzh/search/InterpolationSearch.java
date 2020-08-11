@@ -12,20 +12,32 @@ package com.scuyjzh.search;
 class InterpolationSearch {
     public int search(int[] arr, int key) {
         int low = 0, high = arr.length - 1;
-        while (low <= high) {
-            int mid = low + (high - low) * (key - arr[low]) / (arr[high] - arr[low]);
-            int midVal = arr[mid];
-            if (midVal < key) {
-                low = mid + 1;
-            } else if (midVal > key) {
-                high = mid - 1;
-            } else {
-                // key found
-                return mid;
+        // Since array is sorted, an element present
+        // in array must be in range defined by corner
+        while (low <= high && key >= arr[low] && key <= arr[high]) {
+            if (low == high) {
+                if (arr[low] == key) {
+                    return low;
+                }
+                return -1;
+            }
+            // Probing the position with keeping
+            // uniform distribution in mind
+            int pos = low + (key - arr[low]) * (high - low) / (arr[high] - arr[low]);
+            // Condition of target found
+            if (arr[pos] == key) {
+                return pos;
+            }
+            // If key is larger, key is in upper part
+            if (arr[pos] < key) {
+                low = pos + 1;
+            }
+            // If key is smaller, key is in the lower part
+            else {
+                high = pos - 1;
             }
         }
-        // key not found
-        return -(low + 1);
+        return -1;
     }
 
     public static void main(String[] args) {

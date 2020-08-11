@@ -14,18 +14,21 @@ class BinarySearch {
         int low = 0, high = arr.length - 1;
         while (low <= high) {
             int mid = low + ((high - low) / 2);
-            int midVal = arr[mid];
-            if (midVal < key) {
-                low = mid + 1;
-            } else if (midVal > key) {
-                high = mid - 1;
-            } else {
-                // key found
+            // Check if x is present at mid
+            if (arr[mid] == key) {
                 return mid;
             }
+            // If key is larger, ignore left half
+            if (arr[mid] < key) {
+                low = mid + 1;
+            }
+            // If key is smaller, ignore right half
+            else {
+                high = mid - 1;
+            }
         }
-        // key not found
-        return -(low + 1);
+        // if we reach here, then element was not present
+        return -1;
     }
 
     public static void main(String[] args) {
