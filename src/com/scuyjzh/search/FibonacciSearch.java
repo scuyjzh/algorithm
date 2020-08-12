@@ -7,30 +7,27 @@ package com.scuyjzh.search;
  * @date 2020/8/11 16:27
  */
 class FibonacciSearch {
-    public int search(int[] a, int key) {
+    public int search(int[] arr, int key) {
         int low, high;
-        int lastA;
-        // 创建最大值刚好>=待查找数组长度的裴波纳契数组
-        int[] fiboArray = makeFiboArray(a.length);
+        // 创建最大值刚好大于等于待查找数组长度的裴波纳契数组
+        int[] fiboArray = makeFiboArray(arr.length);
+        // 获取创建好的裴波那契数组最大值
         int filledLength = fiboArray[fiboArray.length - 1];
         // 创建长度等于裴波那契数组最大值的填充数组
         int[] filledArray = new int[filledLength];
-
-        for (int i = 0; i < a.length; i++) {
-            // 将待排序数组的元素都放入填充数组中
-            filledArray[i] = a[i];
+        // 将待排序数组的元素依次放入填充数组中
+        for (int i = 0; i < arr.length; i++) {
+            filledArray[i] = arr[i];
         }
-
-        // 待排序数组的最后一个值
-        lastA = a[a.length - 1];
-        for (int i = a.length; i < filledLength; i++) {
-            // 如果填充数组还有空的元素，用原数组最后一个元素值填满
-            filledArray[i] = lastA;
+        // 如果填充数组还有空的元素，用原数组最后一个元素值填满
+        int last = arr[arr.length - 1];
+        for (int i = arr.length; i < filledLength; i++) {
+            filledArray[i] = last;
         }
 
         // 取得待排序数组的长度 （注意是原数组！）
         low = 0;
-        high = a.length;
+        high = arr.length;
         int mid;
         int k = fiboArray.length - 1;
         while (low <= high) {
@@ -46,7 +43,9 @@ class FibonacciSearch {
                 low = mid + 1;
                 // f(k-2)是右半边的长度
                 k = k - 2;
-            } else {
+            }
+            // 查找到目标值
+            else {
                 // 说明取到了填充数组末尾的重复元素了
                 if (mid > high) {
                     return high;
@@ -74,7 +73,7 @@ class FibonacciSearch {
 
         // 根据上面计算的长度创建一个空数组
         int[] fb = new int[fbLength];
-        // 第一和一二个数是迭代计算裴波那契数的基础
+        // 第一和第二个数是迭代计算裴波那契数的基础
         fb[0] = 1;
         fb[1] = 1;
         for (int i = 2; i < fbLength; i++) {
@@ -85,9 +84,9 @@ class FibonacciSearch {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[]{1, 4, 6, 9, 11, 66, 78};
+        int[] arr = new int[]{0, 1, 2, 3, 4, 5, 6, 7};
         FibonacciSearch fibonacciSearch = new FibonacciSearch();
-        int res = fibonacciSearch.search(arr, 11);
+        int res = fibonacciSearch.search(arr, 6);
         System.out.println(res);
     }
 }

@@ -23,18 +23,18 @@ class InterpolationSearch {
             }
             // Probing the position with keeping
             // uniform distribution in mind
-            int pos = low + (key - arr[low]) * (high - low) / (arr[high] - arr[low]);
+            int mid = low + (key - arr[low]) * (high - low) / (arr[high] - arr[low]);
             // Condition of target found
-            if (arr[pos] == key) {
-                return pos;
+            if (arr[mid] == key) {
+                return mid;
             }
             // If key is larger, key is in upper part
-            if (arr[pos] < key) {
-                low = pos + 1;
+            if (arr[mid] < key) {
+                low = mid + 1;
             }
             // If key is smaller, key is in the lower part
             else {
-                high = pos - 1;
+                high = mid - 1;
             }
         }
         return -1;
