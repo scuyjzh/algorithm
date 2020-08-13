@@ -1,4 +1,4 @@
-package com.scuyjzh.tree;
+package com.scuyjzh.binarytree;
 
 /**
  * @author scuyjzh
