@@ -4,28 +4,30 @@ import java.util.*;
 
 /**
  * @author scuyjzh
- * @data 2020/8/14 2:10
+ * @data 2020/8/14 2:22
  */
-class NodeNumOfBinaryTree {
+class LeafNumOfBinaryTree {
     /**
      * Approach #1 (Iteration by level-order traversal - BFS)
      */
-    public int getNodeNum1(TreeNode root) {
+    public int getLeafNum1(TreeNode root) {
         if (root == null) {
             return 0;
         }
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-        int num = 1;
+        int num = 0;
         while (!queue.isEmpty()) {
             TreeNode curr = queue.poll();
-            if (curr.left != null) {
-                queue.offer(curr.left);
+            if (curr.left == null && curr.right == null) {
                 num++;
-            }
-            if (curr.right != null) {
-                queue.offer(curr.right);
-                num++;
+            } else {
+                if (curr.left != null) {
+                    queue.offer(curr.left);
+                }
+                if (curr.right != null) {
+                    queue.offer(curr.right);
+                }
             }
         }
         return num;
@@ -34,22 +36,24 @@ class NodeNumOfBinaryTree {
     /**
      * Approach #2 (Recursion - DFS)
      */
-    public int getNodeNum2(TreeNode root) {
+    public int getLeafNum2(TreeNode root) {
         return dfs(root);
     }
 
     private int dfs(TreeNode root) {
         if (root == null) {
             return 0;
-        } else {
-            return dfs(root.left) + dfs(root.right) + 1;
         }
+        if (root.left == null && root.right == null) {
+            return 1;
+        }
+        return dfs(root.left) + dfs(root.right);
     }
 
     public static void main(String[] args) {
-        NodeNumOfBinaryTree solution = new NodeNumOfBinaryTree();
+        LeafNumOfBinaryTree solution = new LeafNumOfBinaryTree();
         TreeNode root = TreeNode.initBinaryTree("[3,9,20,null,null,15,7]");
-        System.out.println(solution.getNodeNum1(root));
-        System.out.println(solution.getNodeNum2(root));
+        System.out.println(solution.getLeafNum1(root));
+        System.out.println(solution.getLeafNum2(root));
     }
 }
