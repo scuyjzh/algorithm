@@ -18,13 +18,13 @@ class NodeNumOfBinaryTree {
         queue.add(root);
         int num = 1;
         while (!queue.isEmpty()) {
-            TreeNode curr = queue.remove();
-            if (curr.left != null) {
-                queue.add(curr.left);
+            TreeNode cur = queue.remove();
+            if (cur.left != null) {
+                queue.add(cur.left);
                 num++;
             }
-            if (curr.right != null) {
-                queue.add(curr.right);
+            if (cur.right != null) {
+                queue.add(cur.right);
                 num++;
             }
         }

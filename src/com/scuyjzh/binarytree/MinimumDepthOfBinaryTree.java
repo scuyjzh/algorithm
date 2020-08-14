@@ -20,16 +20,16 @@ class MinimumDepthOfBinaryTree {
         while (!queue.isEmpty()) {
             int size = queue.size();
             while (size-- > 0) {
-                TreeNode curr = queue.remove();
+                TreeNode cur = queue.remove();
                 // 第一个访问到的叶子就是最小深度的结点
-                if (curr.left == null && curr.right == null) {
+                if (cur.left == null && cur.right == null) {
                     return depth;
                 }
-                if (curr.left != null) {
-                    queue.add(curr.left);
+                if (cur.left != null) {
+                    queue.add(cur.left);
                 }
-                if (curr.right != null) {
-                    queue.add(curr.right);
+                if (cur.right != null) {
+                    queue.add(cur.right);
                 }
             }
             depth++;

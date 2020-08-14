@@ -16,34 +16,34 @@ class LeafNumOnKthLevel {
         }
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        int currLevel = 0;
-        int currLevelNodeTotal = 0;
+        int curLevel = 0;
+        int curLevelNodeTotal = 0;
         while (!queue.isEmpty()) {
-            currLevel++;
-            currLevelNodeTotal = queue.size();
+            curLevel++;
+            curLevelNodeTotal = queue.size();
             // 如果当前层数等于给定层数，则退出
-            if (currLevel == k) {
+            if (curLevel == k) {
                 break;
             }
             // 将下一层节点入队
             int cntNode = 0;
-            while (cntNode < currLevelNodeTotal) {
+            while (cntNode < curLevelNodeTotal) {
                 cntNode++;
-                TreeNode curr = queue.remove();
-                if (curr.left != null) {
-                    queue.add(curr.left);
+                TreeNode cur = queue.remove();
+                if (cur.left != null) {
+                    queue.add(cur.left);
                 }
-                if (curr.right != null) {
-                    queue.add(curr.right);
+                if (cur.right != null) {
+                    queue.add(cur.right);
                 }
             }
         }
         int cntNode = 0;
         int leafNode = 0;
-        while (cntNode < currLevelNodeTotal) {
+        while (cntNode < curLevelNodeTotal) {
             cntNode++;
-            TreeNode curr = queue.remove();
-            if (curr.left == null && curr.right == null) {
+            TreeNode cur = queue.remove();
+            if (cur.left == null && cur.right == null) {
                 leafNode++;
             }
         }

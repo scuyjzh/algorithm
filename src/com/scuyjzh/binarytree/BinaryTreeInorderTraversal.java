@@ -16,18 +16,52 @@ class BinaryTreeInorderTraversal {
             return list;
         }
         Stack<TreeNode> stack = new Stack<>();
-        TreeNode curr = root;
-        while (curr != null || !stack.empty()) {
+        TreeNode cur = root;
+        while (cur != null || !stack.empty()) {
             // 不断往左子树方向走，每走一次就将当前节点保存到栈中
-            while (curr != null) {
-                stack.push(curr);
-                curr = curr.left;
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
             }
-            // 当前节点为空，说明左边走到头了，从栈中弹出节点并保存
-            curr = stack.pop();
-            list.add(curr.val);
+            // 当前节点为空，说明左边走到头了，从栈中弹出节点并输出
+            cur = stack.pop();
+            list.add(cur.val);
             // 然后转向右子树节点，继续上面整个过程
-            curr = curr.right;
+            cur = cur.right;
+        }
+        return list;
+    }
+
+    /**
+     * Approach #2 (Iteration by Morris Traversal)
+     */
+    public List<Integer> inorderTraversal2(TreeNode root) {
+        List<Integer> list = new LinkedList<>();
+        if (root == null) {
+            return list;
+        }
+        TreeNode cur = root, pre;
+        while (cur != null) {
+            // 左子树为空，输出当前节点，并将其右孩子作为当前节点
+            if (cur.left == null) {
+                list.add(cur.val);
+                cur = cur.right;
+            } else {
+                // 左子树不为空
+                pre = cur.left;
+                // 找到前驱节点，即左子树中的最右节点
+                while (pre.right != null && pre.right != cur) {
+                    pre = pre.right;
+                }
+                if (pre.right == null) {
+                    pre.right = cur;
+                    cur = cur.left;
+                } else {
+                    pre.right = null;
+                    list.add(cur.val);
+                    cur = cur.right;
+                }
+            }
         }
         return list;
     }
@@ -55,7 +89,7 @@ class BinaryTreeInorderTraversal {
         BinaryTreeInorderTraversal solution = new BinaryTreeInorderTraversal();
         TreeNode root = TreeNode.initBinaryTree("[1,2,3,4,5,6,null,null,null,7,8]");
         System.out.println(solution.inorderTraversal1(root));
-        System.out.println(solution.inorderTraversal1(root));
+        System.out.println(solution.inorderTraversal2(root));
         System.out.println(solution.inorderTraversal3(root));
     }
 }

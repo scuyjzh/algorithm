@@ -18,15 +18,15 @@ class LeafNumOfBinaryTree {
         queue.add(root);
         int num = 0;
         while (!queue.isEmpty()) {
-            TreeNode curr = queue.remove();
-            if (curr.left == null && curr.right == null) {
+            TreeNode cur = queue.remove();
+            if (cur.left == null && cur.right == null) {
                 num++;
             } else {
-                if (curr.left != null) {
-                    queue.add(curr.left);
+                if (cur.left != null) {
+                    queue.add(cur.left);
                 }
-                if (curr.right != null) {
-                    queue.add(curr.right);
+                if (cur.right != null) {
+                    queue.add(cur.right);
                 }
             }
         }
