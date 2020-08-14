@@ -15,17 +15,17 @@ class MaximumDepthOfBinaryTree {
             return 0;
         }
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
+        queue.add(root);
         int depth = 0;
         while (!queue.isEmpty()) {
             int size = queue.size();
             while (size-- > 0) {
-                TreeNode curr = queue.poll();
+                TreeNode curr = queue.remove();
                 if (curr.left != null) {
-                    queue.offer(curr.left);
+                    queue.add(curr.left);
                 }
                 if (curr.right != null) {
-                    queue.offer(curr.right);
+                    queue.add(curr.right);
                 }
             }
             depth++;

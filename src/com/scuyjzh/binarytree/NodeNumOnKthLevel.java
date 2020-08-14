@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * @author scuyjzh
- * @data 2020/8/14 2:35
+ * @date 2020/8/14 2:35
  */
 class NodeNumOnKthLevel {
     /**
@@ -15,7 +15,7 @@ class NodeNumOnKthLevel {
             return 0;
         }
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
+        queue.add(root);
         int currLevel = 0;
         int currLevelNodeTotal = 0;
         while (!queue.isEmpty()) {
@@ -29,12 +29,12 @@ class NodeNumOnKthLevel {
             int cntNode = 0;
             while (cntNode < currLevelNodeTotal) {
                 cntNode++;
-                TreeNode curr = queue.poll();
+                TreeNode curr = queue.remove();
                 if (curr.left != null) {
-                    queue.offer(curr.left);
+                    queue.add(curr.left);
                 }
                 if (curr.right != null) {
-                    queue.offer(curr.right);
+                    queue.add(curr.right);
                 }
             }
         }

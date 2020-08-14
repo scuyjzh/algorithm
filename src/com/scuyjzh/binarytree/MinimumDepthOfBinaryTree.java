@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * @author scuyjzh
- * @data 2020/8/14 1:58
+ * @date 2020/8/14 1:58
  */
 class MinimumDepthOfBinaryTree {
     /**
@@ -20,7 +20,7 @@ class MinimumDepthOfBinaryTree {
         while (!queue.isEmpty()) {
             int size = queue.size();
             while (size-- > 0) {
-                TreeNode curr = queue.poll();
+                TreeNode curr = queue.remove();
                 // 第一个访问到的叶子就是最小深度的结点
                 if (curr.left == null && curr.right == null) {
                     return depth;
