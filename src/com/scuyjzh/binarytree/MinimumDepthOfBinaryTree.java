@@ -8,7 +8,7 @@ import java.util.*;
  */
 class MinimumDepthOfBinaryTree {
     /**
-     * Approach #1 (Iteration by level-order traversal - BFS)
+     * Approach #1 (Iteration by Level Order Traversal - BFS)
      */
     public int minDepth1(TreeNode root) {
         if (root == null) {

@@ -8,7 +8,7 @@ import java.util.*;
  */
 class NodeNumOnKthLevel {
     /**
-     * Approach #1 (Iteration by level-order traversal - BFS)
+     * Approach #1 (Iteration by Level Order Traversal - BFS)
      */
     public int getNodeNumOnKthLevel1(TreeNode root, int k) {
         if (root == null) {

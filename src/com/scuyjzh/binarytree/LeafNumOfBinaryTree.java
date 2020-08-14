@@ -8,7 +8,7 @@ import java.util.*;
  */
 class LeafNumOfBinaryTree {
     /**
-     * Approach #1 (Iteration by level-order traversal - BFS)
+     * Approach #1 (Iteration by Level Order Traversal - BFS)
      */
     public int getLeafNum1(TreeNode root) {
         if (root == null) {
