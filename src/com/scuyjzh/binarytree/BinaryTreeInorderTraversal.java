@@ -53,10 +53,15 @@ class BinaryTreeInorderTraversal {
                 while (pre.right != null && pre.right != cur) {
                     pre = pre.right;
                 }
+                // 如果前驱节点的右孩子为空，则将它的右孩子设置为当前节点
+                // 同时将当前节点更新为当前节点的左孩子
                 if (pre.right == null) {
                     pre.right = cur;
                     cur = cur.left;
-                } else {
+                }
+                // 如果前驱节点的右孩子为当前节点，则将它的右孩子重新设为空（恢复树的形状，斩断线索）
+                // 同时输出当前节点，并将当前节点更新为当前节点的右孩子
+                if (pre.right == cur) {
                     pre.right = null;
                     list.add(cur.val);
                     cur = cur.right;
@@ -87,7 +92,7 @@ class BinaryTreeInorderTraversal {
 
     public static void main(String[] args) {
         BinaryTreeInorderTraversal solution = new BinaryTreeInorderTraversal();
-        TreeNode root = TreeNode.initBinaryTree("[1,2,3,4,5,6,null,null,null,7,8]");
+        TreeNode root = TreeNode.initBinaryTree("[1,2,3,4,5,6,null]");
         System.out.println(solution.inorderTraversal1(root));
         System.out.println(solution.inorderTraversal2(root));
         System.out.println(solution.inorderTraversal3(root));
