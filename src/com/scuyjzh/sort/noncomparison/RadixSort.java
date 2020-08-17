@@ -32,10 +32,10 @@ class RadixSort {
         int[] bucketElementCounts = new int[10];
         for (int i = 0, n = 1; i < maxLength; i++, n *= 10) {
             // 往桶中存数据，第一次是个位，第二次是十位，依次类推
-            for (int j = 0; j < arr.length; j++) {
+            for (int value : arr) {
                 // 取对应位置上的数
-                int digitOfElement = arr[j] / n % 10;
-                bucket[digitOfElement][bucketElementCounts[digitOfElement]] = arr[j];
+                int digitOfElement = value / n % 10;
+                bucket[digitOfElement][bucketElementCounts[digitOfElement]] = value;
                 bucketElementCounts[digitOfElement]++;
             }
             // 按照桶的顺序取数据
