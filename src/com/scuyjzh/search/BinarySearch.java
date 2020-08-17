@@ -13,17 +13,17 @@ class BinarySearch {
     public int search(int[] arr, int key) {
         int low = 0, high = arr.length - 1;
         while (low <= high) {
-            // prevent '+' integer overflow
+            // Prevent '+' integer overflow
             int mid = low + (high - low) / 2;
-            // Check if x is present at mid
+            // check if x is present at mid
             if (arr[mid] == key) {
                 return mid;
             }
-            // If key is larger, ignore left half
+            // if key is larger, ignore left half
             if (arr[mid] < key) {
                 low = mid + 1;
             }
-            // If key is smaller, ignore right half
+            // if key is smaller, ignore right half
             else {
                 high = mid - 1;
             }
