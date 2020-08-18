@@ -42,31 +42,43 @@ class BinaryTreeInorderTraversal {
         }
         TreeNode cur = root, pre;
         while (cur != null) {
-            // 左子树为空，输出当前节点，并将其右孩子作为当前节点
+            // 1.如果当前节点的左孩子为空，按照中序遍历规则直接输出当前节点，并将其右孩子作为当前节点
             if (cur.left == null) {
+                // 输出当前节点
                 list.add(cur.val);
+                // 将当前节点更新为右孩子
                 cur = cur.right;
-            } else {
-                // 左子树不为空
-                pre = cur.left;
+            }
+            // 2.如果当前节点的左孩子不为空，在当前节点的左子树中找到当前节点在中序遍历下的前驱节点
+            else {
                 // 找到前驱节点，即左子树中的最右节点
+                pre = cur.left;
                 while (pre.right != null && pre.right != cur) {
+                    // 退出循环的条件是：
+                    // (1)pre.right==null，第一次遍历到当前节点，则执行2.a
+                    // (2)pre.right==cur，第二次遍历到当前节点，则执行2.b
                     pre = pre.right;
                 }
-                // 如果前驱节点的右孩子为空，则将它的右孩子设置为当前节点
-                // 同时将当前节点更新为当前节点的左孩子
+                // 2.a)如果前驱节点的右孩子为空，则将它的右孩子设置为当前节点
+                //     同时将当前节点更新为当前节点的左孩子
                 if (pre.right == null) {
+                    // 找到当前节点的前驱节点
                     pre.right = cur;
+                    // 将当前节点更新为左孩子
                     cur = cur.left;
                 }
-                // 如果前驱节点的右孩子为当前节点，则将它的右孩子重新设为空（恢复树的形状，斩断线索）
-                // 同时输出当前节点，并将当前节点更新为当前节点的右孩子
+                // 2.b)如果前驱节点的右孩子为当前节点，说明当前节点的左子树已遍历完，此时将它的右孩子重新设为空（恢复树的形状）
+                //     同时输出当前节点，并将当前节点更新为当前节点的右孩子
                 if (pre.right == cur) {
+                    // 恢复树的形状
                     pre.right = null;
+                    // 输出当前节点
                     list.add(cur.val);
+                    // 将当前节点更新为右孩子
                     cur = cur.right;
                 }
             }
+            // 3.重复以上1、2直到当前节点为空
         }
         return list;
     }
@@ -92,7 +104,7 @@ class BinaryTreeInorderTraversal {
 
     public static void main(String[] args) {
         BinaryTreeInorderTraversal solution = new BinaryTreeInorderTraversal();
-        TreeNode root = TreeNode.initBinaryTree("[1,2,3,4,5,6,null]");
+        TreeNode root = TreeNode.initBinaryTree("[6,2,7,1,4,null,9,null,null,3,5,null,null,8]");
         System.out.println(solution.inorderTraversal1(root));
         System.out.println(solution.inorderTraversal2(root));
         System.out.println(solution.inorderTraversal3(root));
