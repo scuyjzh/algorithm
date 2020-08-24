@@ -21,7 +21,7 @@ class BinaryTreePostorderTraversal {
                 stack.push(cur);
                 cur = cur.left;
             }
-            cur = stack.peek();
+            cur = stack.element();
             if (cur.right == null || cur.right == pre) {
                 list.add(cur.val);
                 stack.pop();
