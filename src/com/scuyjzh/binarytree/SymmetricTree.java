@@ -82,6 +82,6 @@ class SymmetricTree {
         SymmetricTree solution = new SymmetricTree();
         TreeNode root = TreeNode.initBinaryTree("[1,2,2,3,4,4,3,8,7,6,5,5,6,7,8]");
         System.out.println(solution.isSymmetric1(root));
-        System.out.println(solution.isSymmetric1(root));
+        System.out.println(solution.isSymmetric2(root));
     }
 }
