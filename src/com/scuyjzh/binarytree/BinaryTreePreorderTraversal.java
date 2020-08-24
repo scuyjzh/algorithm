@@ -15,14 +15,41 @@ class BinaryTreePreorderTraversal {
         if (root == null) {
             return list;
         }
-        // 定义栈模拟二叉树，利用先入后出的特点，节点出栈顺序为中左右，进栈顺序则为右左中
-        Stack<TreeNode> stack = new Stack<>();
-        // 先把root压入栈中
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode cur = root;
+        while (cur != null || !stack.isEmpty()) {
+            while (cur != null) {
+                // 每次遍历到“左”节点，立即输出即可
+                list.add(cur.val);
+                stack.push(cur);
+                cur = cur.left;
+            }
+            // 弹出访问过的“左”节点
+            cur = stack.pop();
+            // 转向到“右”节点
+            cur = cur.right;
+        }
+        return list;
+    }
+
+    /**
+     * Approach #2 (Iteration with Stack - DFS)
+     */
+    public List<Integer> preorderTraversal2(TreeNode root) {
+        List<Integer> list = new LinkedList<>();
+        if (root == null) {
+            return list;
+        }
+        // 定义栈模拟二叉树，利用先入后出的特点，节点出栈顺序为根左右，进栈顺序则为右左根
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        // 先把根节点压入栈中
         stack.push(root);
-        while (!stack.empty()) {
-            // 获取栈的顶层节点
+        while (!stack.isEmpty()) {
+            // 弹出栈的顶层节点
             TreeNode cur = stack.pop();
             list.add(cur.val);
+            // 进栈：右 -> 左 -> 根
+            // 出栈：根 -> 左 -> 右
             if (cur.right != null) {
                 stack.push(cur.right);
             }
@@ -34,9 +61,9 @@ class BinaryTreePreorderTraversal {
     }
 
     /**
-     * Approach #2 (Iteration by Morris Traversal)
+     * Approach #3 (Iteration by Morris Traversal)
      */
-    public List<Integer> preorderTraversal2(TreeNode root) {
+    public List<Integer> preorderTraversal3(TreeNode root) {
         List<Integer> list = new LinkedList<>();
         if (root == null) {
             return list;
@@ -85,9 +112,9 @@ class BinaryTreePreorderTraversal {
     }
 
     /**
-     * Approach #3 (Recursion - DFS)
+     * Approach #4 (Recursion - DFS)
      */
-    public List<Integer> preorderTraversal3(TreeNode root) {
+    public List<Integer> preorderTraversal4(TreeNode root) {
         List<Integer> list = new LinkedList<>();
         traversal(root, list);
         return list;
@@ -108,5 +135,6 @@ class BinaryTreePreorderTraversal {
         System.out.println(solution.preorderTraversal1(root));
         System.out.println(solution.preorderTraversal2(root));
         System.out.println(solution.preorderTraversal3(root));
+        System.out.println(solution.preorderTraversal4(root));
     }
 }

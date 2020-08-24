@@ -15,9 +15,9 @@ class BinaryTreeInorderTraversal {
         if (root == null) {
             return list;
         }
-        Stack<TreeNode> stack = new Stack<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
         TreeNode cur = root;
-        while (cur != null || !stack.empty()) {
+        while (cur != null || !stack.isEmpty()) {
             // 不断往左子树方向走，每走一次就将当前节点保存到栈中
             while (cur != null) {
                 stack.push(cur);
@@ -25,6 +25,7 @@ class BinaryTreeInorderTraversal {
             }
             // 当前节点为空，说明左边走到头了，从栈中弹出节点并输出
             cur = stack.pop();
+            // 与先序遍历唯一不同的地方
             list.add(cur.val);
             // 然后转向右子树节点，继续上面整个过程
             cur = cur.right;
