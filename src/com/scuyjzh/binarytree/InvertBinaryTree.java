@@ -11,8 +11,6 @@ import java.util.*;
 class InvertBinaryTree {
     /**
      * 方法一：深度优先搜索
-     * 时间复杂度：O(n)，其中 n 是树中节点的个数，树中的每个节点都只被访问一次。在反转之前，不论怎样我们至少都得访问每个节点至少一次，因此这个问题无法做地比 O(n) 更好了
-     * 空间复杂度：O(n)，本方法使用了递归，在最坏情况下栈内需要存放 O(h) 个方法调用，其中 h 是树的高度。由于 h∈O(n)，可得出空间复杂度为 O(n)
      */
     public TreeNode invertTree1(TreeNode root) {
         return invert(root);
@@ -32,8 +30,6 @@ class InvertBinaryTree {
 
     /**
      * 方法二：广度优先搜索
-     * 时间复杂度：O(n)，其中 n 是树中节点的个数，树中的每个节点都只被访问/入队一次
-     * 空间复杂度：O(n)，即使在最坏的情况下，也就是队列里包含了树中所有的节点。对于一颗完整二叉树来说，叶子节点那一层拥有 n / 2 = O(n) 个节点
      */
     public TreeNode invertTree2(TreeNode root) {
         if (root == null) {
