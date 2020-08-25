@@ -1,10 +1,10 @@
-package com.scuyjzh.binarytree;
+package com.scuyjzh.structure;
 
 /**
  * @author scuyjzh
  * @date 2020/8/13 1:37
  */
-class TreeNode {
+public class TreeNode {
     public int val;
     public TreeNode left;
     public TreeNode right;
