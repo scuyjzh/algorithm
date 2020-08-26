@@ -56,4 +56,11 @@ class InvertBinaryTree {
         // 返回处理完的根节点
         return root;
     }
+
+    public static void main(String[] args) {
+        InvertBinaryTree solution = new InvertBinaryTree();
+        TreeNode root = TreeNode.initBinaryTree("[1,2,3,4]");
+        System.out.println(solution.invertTree1(root));
+        System.out.println(solution.invertTree2(root));
+    }
 }
