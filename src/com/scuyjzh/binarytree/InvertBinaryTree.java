@@ -5,6 +5,8 @@ import com.scuyjzh.structure.TreeNode;
 import java.util.*;
 
 /**
+ * 翻转一棵二叉树。
+ *
  * @author scuyjzh
  * @date 2020/8/25 10:37
  */

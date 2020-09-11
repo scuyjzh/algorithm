@@ -2,15 +2,14 @@ package com.scuyjzh.binarytree;
 
 import com.scuyjzh.structure.TreeNode;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
- * 给定一个二叉树，确定它是否是一个完全二叉树。
- *
  * @author scuyjzh
- * @date 2020/9/11 10:36
+ * @date 2020/9/11 11:12
  */
-class CheckCompletenessOfBinaryTree {
+class CheckCompleteness {
     public boolean isCompleteTree(TreeNode root) {
         if (root == null) {
             return false;
@@ -54,7 +53,7 @@ class CheckCompletenessOfBinaryTree {
     }
 
     public static void main(String[] args) {
-        CheckCompletenessOfBinaryTree solution = new CheckCompletenessOfBinaryTree();
+        CheckCompleteness solution = new CheckCompleteness();
         TreeNode root = TreeNode.initBinaryTree("[1,2,3,4,null]");
         System.out.println(solution.isCompleteTree(root));
     }
