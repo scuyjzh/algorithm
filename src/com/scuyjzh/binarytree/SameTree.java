@@ -5,6 +5,8 @@ import com.scuyjzh.structure.TreeNode;
 import java.util.*;
 
 /**
+ * 给定两个二叉树，编写一个函数来检验它们是否相同。
+ *
  * @author scuyjzh
  * @date 2020/8/25 10:05
  */
