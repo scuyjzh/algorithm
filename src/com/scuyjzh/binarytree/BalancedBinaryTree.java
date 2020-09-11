@@ -3,6 +3,8 @@ package com.scuyjzh.binarytree;
 import com.scuyjzh.structure.TreeNode;
 
 /**
+ * 给定一个二叉树，判断它是否是高度平衡的二叉树。
+ *
  * @author scuyjzh
  * @date 2020/8/25 11:00
  */

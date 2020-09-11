@@ -5,6 +5,8 @@ import com.scuyjzh.structure.TreeNode;
 import java.util.*;
 
 /**
+ * 给定一个二叉树，返回它的前序遍历。
+ *
  * @author scuyjzh
  * @date 2020/8/14 11:41
  */

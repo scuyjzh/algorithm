@@ -5,11 +5,13 @@ import com.scuyjzh.structure.TreeNode;
 import java.util.*;
 
 /**
+ * 给定一个二叉树，确定它是否是一个完全二叉树。
+ *
  * @author scuyjzh
- * @date 2020/8/26 9:50
+ * @date 2020/9/11 10:36
  */
-class CompleteBinaryTree {
-    public boolean isComplete(TreeNode root) {
+class CheckCompletenessOfBinaryTree {
+    public boolean isCompleteTree(TreeNode root) {
         if (root == null) {
             return false;
         }
@@ -52,8 +54,8 @@ class CompleteBinaryTree {
     }
 
     public static void main(String[] args) {
-        CompleteBinaryTree solution = new CompleteBinaryTree();
+        CheckCompletenessOfBinaryTree solution = new CheckCompletenessOfBinaryTree();
         TreeNode root = TreeNode.initBinaryTree("[1,2,3,4,null]");
-        System.out.println(solution.isComplete(root));
+        System.out.println(solution.isCompleteTree(root));
     }
 }
