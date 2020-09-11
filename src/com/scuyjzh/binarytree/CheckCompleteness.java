@@ -2,10 +2,11 @@ package com.scuyjzh.binarytree;
 
 import com.scuyjzh.structure.TreeNode;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
+ * 给定一个二叉树，确定它是否是一个完全二叉树。
+ *
  * @author scuyjzh
  * @date 2020/9/11 11:12
  */
