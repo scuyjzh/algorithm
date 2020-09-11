@@ -11,10 +11,6 @@ import com.scuyjzh.structure.TreeNode;
 public class LowestCommonAncestor {
     private TreeNode ans;
 
-    public LowestCommonAncestor() {
-        this.ans = null;
-    }
-
     private boolean dfs(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) {
             return false;
@@ -25,7 +21,8 @@ public class LowestCommonAncestor {
         boolean inRight = dfs(root.right, p, q);
         // 是当前节点
         boolean isCurrentNode = root.val == p.val || root.val == q.val;
-        if ((inLeft && inRight) || (isCurrentNode && (inLeft || inRight))) {
+        boolean existed = (inLeft && inRight) || (isCurrentNode && (inLeft || inRight));
+        if (existed) {
             ans = root;
         }
         return inLeft || inRight || isCurrentNode;
