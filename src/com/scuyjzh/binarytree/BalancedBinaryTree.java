@@ -39,7 +39,7 @@ class BalancedBinaryTree {
     private int recur(TreeNode root) {
         // 递归终止条件：
         // 1.当越过叶子节点时，返回高度 0
-        // 2.当左（右）子树高度 left == -1 时，代表此子树的 左（右）子树 不是平衡树，因此直接返回 -1
+        // 2.当左（右）子树高度 left == -1 时，代表此子树的左（右）子树不是平衡树，因此直接返回 -1
         if (root == null) {
             return 0;
         }
