@@ -1,4 +1,4 @@
-package com.scuyjzh.sort.noncomparison;
+package com.scuyjzh.sort.linear;
 
 import java.util.*;
 
