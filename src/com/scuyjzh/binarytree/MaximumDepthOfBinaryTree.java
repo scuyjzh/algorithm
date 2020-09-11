@@ -5,6 +5,8 @@ import com.scuyjzh.structure.TreeNode;
 import java.util.*;
 
 /**
+ * 给定一个二叉树，找出其最大深度。
+ *
  * @author scuyjzh
  * @date 2020/8/13 19:43
  */
