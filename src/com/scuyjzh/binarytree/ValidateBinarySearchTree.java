@@ -55,6 +55,7 @@ class ValidateBinarySearchTree {
     public static void main(String[] args) {
         ValidateBinarySearchTree solution = new ValidateBinarySearchTree();
         TreeNode root = TreeNode.initBinaryTree("[50,40,80,30,45,60,90,10,35,49,70]");
+        System.out.println(solution.isValidBST1(root));
         System.out.println(solution.isValidBST2(root));
     }
 }
