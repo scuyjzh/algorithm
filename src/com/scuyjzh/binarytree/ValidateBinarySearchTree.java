@@ -5,6 +5,8 @@ import com.scuyjzh.structure.TreeNode;
 import java.util.*;
 
 /**
+ * 给定一个二叉树，判断其是否是一个有效的二叉搜索树。
+ *
  * @author scuyjzh
  * @date 2020/9/11 16:12
  */
