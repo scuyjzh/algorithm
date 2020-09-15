@@ -1,6 +1,6 @@
-package com.scuyjzh.sort.comparison;
+package com.scuyjzh.sort.nonlinear;
 
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * 选择排序是一种简单直观的排序算法。它的工作原理如下：

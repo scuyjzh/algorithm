@@ -1,6 +1,6 @@
-package com.scuyjzh.sort.comparison;
+package com.scuyjzh.sort.nonlinear;
 
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * 希尔排序，也称递减增量排序算法，是插入排序的一种更高效的改进版本。希尔排序是非稳定排序算法。

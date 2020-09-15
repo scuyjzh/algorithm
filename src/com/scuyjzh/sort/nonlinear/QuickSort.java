@@ -1,6 +1,6 @@
-package com.scuyjzh.sort.comparison;
+package com.scuyjzh.sort.nonlinear;
 
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * 快速排序使用分治法（Divide and conquer）策略来把一个序列（list）分为较小和较大的2个子序列，然后递归地排序两个子序列。步骤为：
