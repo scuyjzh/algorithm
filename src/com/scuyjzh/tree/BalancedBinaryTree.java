@@ -1,4 +1,4 @@
-package com.scuyjzh.binarytree;
+package com.scuyjzh.tree;
 
 /**
  * 给定一个二叉树，判断它是否是高度平衡的二叉树。

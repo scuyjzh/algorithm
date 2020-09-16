@@ -1,4 +1,4 @@
-package com.scuyjzh.binarytree;
+package com.scuyjzh.tree;
 
 /**
  * 给出一个完全二叉树，求出该树的节点个数。

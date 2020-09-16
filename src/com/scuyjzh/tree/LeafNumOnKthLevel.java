@@ -1,18 +1,18 @@
-package com.scuyjzh.binarytree;
+package com.scuyjzh.tree;
 
 import java.util.*;
 
 /**
- * 给定一个二叉树，求出该树第K层的节点个数。
+ * 给定一个二叉树，求出该树第K层的叶子节点个数。
  *
  * @author scuyjzh
- * @date 2020/8/14 2:35
+ * @date 2020/8/14 2:57
  */
-class NodeNumOnKthLevel {
+class LeafNumOnKthLevel {
     /**
      * Approach #1 (Iteration by Level Order Traversal - BFS)
      */
-    public int getNodeNumOnKthLevel1(TreeNode root, int k) {
+    public int getLeafNumOnKthLevel1(TreeNode root, int k) {
         if (root == null) {
             return 0;
         }
@@ -40,13 +40,22 @@ class NodeNumOnKthLevel {
                 }
             }
         }
-        return curLevelNodeTotal;
+        int cntNode = 0;
+        int leafNode = 0;
+        while (cntNode < curLevelNodeTotal) {
+            cntNode++;
+            TreeNode cur = queue.remove();
+            if (cur.left == null && cur.right == null) {
+                leafNode++;
+            }
+        }
+        return leafNode;
     }
 
     /**
      * Approach #2 (Recursion - DFS)
      */
-    public int getNodeNumOnKthLevel2(TreeNode root, int k) {
+    public int getLeafNumOnKthLevel2(TreeNode root, int k) {
         return dfs(root, k);
     }
 
@@ -55,15 +64,19 @@ class NodeNumOnKthLevel {
             return 0;
         }
         if (k == 1) {
-            return 1;
+            if (root.left == null && root.right == null) {
+                return 1;
+            } else {
+                return 0;
+            }
         }
         return dfs(root.left, k - 1) + dfs(root.right, k - 1);
     }
 
     public static void main(String[] args) {
-        NodeNumOnKthLevel solution = new NodeNumOnKthLevel();
+        LeafNumOnKthLevel solution = new LeafNumOnKthLevel();
         TreeNode root = TreeNode.initBinaryTree("[3,9,20,null,null,15,7]");
-        System.out.println(solution.getNodeNumOnKthLevel1(root, 3));
-        System.out.println(solution.getNodeNumOnKthLevel2(root, 3));
+        System.out.println(solution.getLeafNumOnKthLevel1(root, 3));
+        System.out.println(solution.getLeafNumOnKthLevel2(root, 3));
     }
 }
