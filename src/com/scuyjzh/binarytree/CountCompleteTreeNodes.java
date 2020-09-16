@@ -1,7 +1,5 @@
 package com.scuyjzh.binarytree;
 
-import com.scuyjzh.structure.TreeNode;
-
 /**
  * 给出一个完全二叉树，求出该树的节点个数。
  *

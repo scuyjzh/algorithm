@@ -1,10 +1,10 @@
-package com.scuyjzh.structure;
+package com.scuyjzh.linkedlist;
 
 /**
  * @author scuyjzh
  * @date 2020/8/25 10:54
  */
-public class ListNode {
+class ListNode {
     public int val;
     public ListNode next;
 
@@ -12,7 +12,7 @@ public class ListNode {
         val = x;
     }
 
-    public static ListNode initList(String str) {
+    public static ListNode initLinkedList(String str) {
         if ("[]".equals(str)) {
             return null;
         }
@@ -31,8 +31,9 @@ public class ListNode {
     public static String toString(ListNode head) {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
-        while (head.next != null) {
+        while (head != null) {
             sb.append(head.val).append(",");
+            head = head.next;
         }
         sb.replace(sb.length() - 1, sb.length(), "]");
         return sb.toString();

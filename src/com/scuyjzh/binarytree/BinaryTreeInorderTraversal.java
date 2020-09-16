@@ -1,7 +1,5 @@
 package com.scuyjzh.binarytree;
 
-import com.scuyjzh.structure.TreeNode;
-
 import java.util.*;
 
 /**
