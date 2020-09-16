@@ -1,6 +1,8 @@
 package com.scuyjzh.linkedlist;
 
 /**
+ * 反转一个单链表。
+ *
  * @author scuyjzh
  * @date 2020/9/16 17:56
  */
