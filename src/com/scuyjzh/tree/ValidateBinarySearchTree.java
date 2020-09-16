@@ -20,15 +20,20 @@ class ValidateBinarySearchTree {
         TreeNode cur = root;
         TreeNode pre = null;
         while (cur != null || !stack.isEmpty()) {
+            // 不断往左子树方向走，每走一次就将当前节点保存到栈中
             while (cur != null) {
                 stack.push(cur);
                 cur = cur.left;
             }
+            // 当前节点为空，说明左边走到头了，从栈中弹出节点并输出
             cur = stack.pop();
+            // 如果当前节点的值小于等于上一个节点的值，说明不是二叉搜索树
             if (pre != null && cur.val <= pre.val) {
                 return false;
             }
+            // 更新上一个节点
             pre = cur;
+            // 然后转向右子树节点，继续上面整个过程
             cur = cur.right;
         }
         return true;
