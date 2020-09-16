@@ -12,7 +12,7 @@ import java.util.*;
  */
 class InvertBinaryTree {
     /**
-     * 方法一：深度优先搜索
+     * Approach #1 (Recursion - DFS)
      */
     public TreeNode invertTree1(TreeNode root) {
         return invert(root);
@@ -31,7 +31,7 @@ class InvertBinaryTree {
     }
 
     /**
-     * 方法二：广度优先搜索
+     * Approach #2 (Iteration with Queue - BFS)
      */
     public TreeNode invertTree2(TreeNode root) {
         if (root == null) {
