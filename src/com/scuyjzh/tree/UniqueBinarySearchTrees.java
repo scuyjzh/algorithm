@@ -7,9 +7,6 @@ package com.scuyjzh.tree;
  * @date 2020/9/17 9:14
  */
 class UniqueBinarySearchTrees {
-    /**
-     * 方法一：动态规划
-     */
     public int numTrees(int n) {
         /*
             定义两个函数：
