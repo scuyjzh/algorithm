@@ -3,6 +3,8 @@ package com.scuyjzh.tree;
 import java.util.*;
 
 /**
+ * 给定一个整数 n，生成所有由 1 ... n 为节点所组成的 二叉搜索树 。
+ *
  * @author scuyjzh
  * @date 2020/9/17 10:30
  */
