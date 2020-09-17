@@ -1,6 +1,8 @@
 package com.scuyjzh.tree;
 
 /**
+ * Definition for a binary tree node.
+ *
  * @author scuyjzh
  * @date 2020/8/13 1:37
  */
