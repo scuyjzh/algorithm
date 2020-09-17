@@ -16,7 +16,7 @@ class ValidateBinarySearchTree {
         if (root == null) {
             return true;
         }
-        Stack<TreeNode> stack = new Stack<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
         TreeNode cur = root;
         TreeNode pre = null;
         while (cur != null || !stack.isEmpty()) {
