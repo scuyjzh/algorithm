@@ -26,6 +26,6 @@ class ConvertSortedArrayToBinarySearchTree {
 
     public static void main(String[] args) {
         ConvertSortedArrayToBinarySearchTree solution = new ConvertSortedArrayToBinarySearchTree();
-        TreeNode.show(solution.sortedArrayToBST(new int[]{1, 2, 3}));
+        solution.sortedArrayToBST(new int[]{1, 2, 3});
     }
 }

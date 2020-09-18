@@ -38,8 +38,6 @@ class RecoverBinarySearchTree {
     public static void main(String[] args) {
         RecoverBinarySearchTree solution = new RecoverBinarySearchTree();
         TreeNode root = TreeNode.initBinaryTree("[3,4,1,null,2]");
-        TreeNode.show(root);
         solution.recoverTree(root);
-        TreeNode.show(root);
     }
 }
