@@ -17,19 +17,26 @@ class BinaryTreeInorderTraversal {
         if (root == null) {
             return list;
         }
+        /*
+            思路：
+            1.将二叉树分为“左”（包括一路向左，经过的所有实际左+根）、“右”（包括实际的右）两种节点
+            2.使用同样的顺序将“左”节点入栈
+            3.在合适的时机转向（转向后，“右”节点即成为“左”节点）、访问节点、或出栈
+        */
         Deque<TreeNode> stack = new ArrayDeque<>();
         TreeNode cur = root;
         while (cur != null || !stack.isEmpty()) {
-            // 不断往左子树方向走，每走一次就将当前节点保存到栈中
+            // 中序遍历的实际顺序：左->根->右
             while (cur != null) {
+                // 不断往左子树方向走，每走一次就将当前节点保存到栈中
                 stack.push(cur);
                 cur = cur.left;
             }
-            // 当前节点为空，说明左边走到头了，从栈中弹出节点并输出
+            // 当前节点为空，说明左边已走到头，从栈中弹出节点并输出（出栈后访问）
             cur = stack.pop();
-            // 与先序遍历唯一不同的地方
+            // 先序与中序的区别只在于对“左”（根+左子树）节点的处理上
             list.add(cur.val);
-            // 然后转向右子树节点，继续上面整个过程
+            // 然后转向“右”节点，使“右”节点变成新的“左”节点，继续上面整个过程
             cur = cur.right;
         }
         return list;

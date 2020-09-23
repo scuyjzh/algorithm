@@ -15,7 +15,6 @@ class BinaryTreePostorderTraversal {
     public List<Integer> postorderTraversal1(TreeNode root) {
         List<Integer> list = new LinkedList<>();
         Deque<TreeNode> stack = new ArrayDeque<>();
-
         TreeNode cur = root;
         TreeNode pre = null;
         while (cur != null || !stack.isEmpty()) {
@@ -23,7 +22,7 @@ class BinaryTreePostorderTraversal {
                 stack.push(cur);
                 cur = cur.left;
             }
-            cur = stack.element();
+            cur = stack.peek();
             if (cur.right == null || cur.right == pre) {
                 list.add(cur.val);
                 stack.pop();

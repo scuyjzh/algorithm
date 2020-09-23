@@ -17,18 +17,27 @@ class BinaryTreePreorderTraversal {
         if (root == null) {
             return list;
         }
+        /*
+            思路：
+            1.将二叉树分为“左”（包括一路向左，经过的所有实际左+根）、“右”（包括实际的右）两种节点
+            2.使用同样的顺序将“左”节点入栈
+            3.在合适的时机转向（转向后，“右”节点即成为“左”节点）、访问节点、或出栈
+        */
         Deque<TreeNode> stack = new ArrayDeque<>();
         TreeNode cur = root;
         while (cur != null || !stack.isEmpty()) {
+            // 先序遍历的实际顺序：根->左->右
             while (cur != null) {
-                // 每次遍历到“左”节点，立即输出即可
+                // 每次遍历到“左”节点时立即输出（入栈前访问），因为先序先访问实际根，后访问实际左
                 list.add(cur.val);
+                // 将访问过的“左”节点入栈
                 stack.push(cur);
+                // 继续向左子树方向走
                 cur = cur.left;
             }
-            // 弹出访问过的“左”节点
+            // 此时已访问过所以“左”（根+左子树）节点，只需将这些没用的节点出栈
             cur = stack.pop();
-            // 转向到“右”节点
+            // 并转向到“右”节点，使“右”节点变成新的“左”节点，后续处理同上
             cur = cur.right;
         }
         return list;
@@ -42,12 +51,12 @@ class BinaryTreePreorderTraversal {
         if (root == null) {
             return list;
         }
-        // 定义栈模拟二叉树，利用先入后出的特点，节点出栈顺序为根左右，进栈顺序则为右左根
+        // 定义栈模拟二叉树，利用其先入后出的特点，节点出栈顺序为根->左->右，进栈顺序则为右->左->根
         Deque<TreeNode> stack = new ArrayDeque<>();
         // 先把根节点压入栈中
         stack.push(root);
         while (!stack.isEmpty()) {
-            // 弹出栈的顶层节点
+            // 弹出栈的顶层节点，并输出结果
             TreeNode cur = stack.pop();
             list.add(cur.val);
             // 进栈：右 -> 左 -> 根
