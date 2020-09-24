@@ -15,23 +15,39 @@ class BinaryTreePostorderTraversal {
     public List<Integer> postorderTraversal1(TreeNode root) {
         List<Integer> list = new LinkedList<>();
         Deque<TreeNode> stack = new ArrayDeque<>();
+        /*
+            思路：
+            1.将二叉树分为“左”（包括一路向左，经过的所有实际左+根）、“右”（包括实际的右）两种节点
+            2.使用同样的顺序将“左”节点入栈
+            3.在合适的时机转向（转向后，“右”节点即成为“左”节点）、访问节点、或出栈
+        */
         TreeNode cur = root;
         TreeNode pre = null;
         while (cur != null || !stack.isEmpty()) {
+            // 后序遍历的实际顺序：根->左->右
+            // 入栈顺序不变，我们只需要考虑第3点的变化（合适时机转向）
+            // 出栈的对象一定都是“左”节点（“右”节点会在转向后称为“左”节点，然后入栈），也就是实际的左或根
+            // 实际的左可以当做左右子树都为 null 的根，所以我们只需要分析实际的根
             while (cur != null) {
                 stack.push(cur);
                 cur = cur.left;
             }
+            // 对于实际的根，需要保证先后访问了左子树、右子树之后，才能访问根
+            // 实际的右节点、左节点、根节点都会成为“左”节点入栈
+            // 因此只需在出栈前，将该节点视作实际的根节点，并检查其右子树是否不存在或已被访问即可
             cur = stack.peek();
+            // 由于访问根节点前，一定先紧挨着访问了其右子树，所以只需增加一个标志位，记录右子树的访问情况
             if (cur.right == null || cur.right == pre) {
+                // 如果不存在右子树或右子树已被访问，那么可以访问根节点
                 list.add(cur.val);
+                // 并出栈，不需要转向
                 stack.pop();
-                // 记录上一个访问的节点
-                // 用于判断“访问根节点之前，右子树是否已访问过”
+                // 记录上一个访问的节点，用于判断“访问根节点之前，右子树是否已访问过”
                 pre = cur;
                 // 表示不需要转向，继续弹栈
                 cur = null;
             } else {
+                // 如果右子树存在且还未被访问过，就转向其右子树，使其“右”节点成为“左”节点，等着它先被访问之后，再来访问根节点
                 cur = cur.right;
             }
         }
@@ -46,17 +62,20 @@ class BinaryTreePostorderTraversal {
         if (root == null) {
             return list;
         }
+        /*
+            思路：
+            1.后序遍历的节点访问顺序为：左 → 右 → 中；将这个次序颠倒过来：中 → 右 → 左
+            2.前序遍历的节点访问顺序为：中 → 左 → 右
+            3.因此，可以将前序遍历代码中的压栈顺序进行调整，并将结果逆序输出即是后序遍历的访问顺序
+        */
         Deque<TreeNode> stack = new ArrayDeque<>();
         stack.push(root);
-        // 前序遍历顺序为：根 -> 左 -> 右
-        // 后序遍历顺序为：左 -> 右 -> 根
         while (!stack.isEmpty()) {
             TreeNode cur = stack.pop();
             // 将节点插入链表的头部
-            // 链表：右 -> 左 -> 根
             list.addFirst(cur.val);
-            // 将遍历的顺序由从左到右修改为从右到左
-            // 链表：左 -> 右 -> 根
+            // 将压栈的顺序调整为先押入左节点，再压入右节点
+            // （前序遍历是先压入右节点，再压入左节点）
             if (cur.left != null) {
                 stack.push(cur.left);
             }
