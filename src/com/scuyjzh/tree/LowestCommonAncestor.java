@@ -19,8 +19,7 @@ public class LowestCommonAncestor {
         boolean inRight = dfs(root.right, p, q);
         // 是当前节点
         boolean isCurrentNode = root.val == p.val || root.val == q.val;
-        boolean existed = (inLeft && inRight) || (isCurrentNode && (inLeft || inRight));
-        if (existed) {
+        if ((inLeft && inRight) || (isCurrentNode && (inLeft || inRight))) {
             ans = root;
         }
         return inLeft || inRight || isCurrentNode;
