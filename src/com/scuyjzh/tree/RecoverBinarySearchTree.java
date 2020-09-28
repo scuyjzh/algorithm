@@ -3,7 +3,7 @@ package com.scuyjzh.tree;
 import java.util.*;
 
 /**
- * 二叉搜索树中的两个节点被错误地交换。请在不改变其结构的情况下，恢复这棵树。
+ * 二叉搜索树中的两个结点被错误地交换。请在不改变其结构的情况下，恢复这棵树。
  *
  * @author scuyjzh
  * @date 2020/9/18 9:52

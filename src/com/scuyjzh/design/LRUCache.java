@@ -22,7 +22,7 @@ class LRUCache {
 
     class DoubleList {
         /**
-         * 虚拟头尾节点
+         * 虚拟头尾结点
          */
         private Node head, tail;
         /**
@@ -39,7 +39,7 @@ class LRUCache {
         }
 
         /**
-         * 在链表头部添加节点 x，时间 O(1)
+         * 在链表头部添加结点 x，时间 O(1)
          */
         public void addFirst(Node x) {
             x.next = head.next;
@@ -50,7 +50,7 @@ class LRUCache {
         }
 
         /**
-         * 删除链表中的 x 节点（x 一定存在），时间 O(1)
+         * 删除链表中的 x 结点（x 一定存在），时间 O(1)
          */
         public void remove(Node x) {
             x.prev.next = x.next;
@@ -59,7 +59,7 @@ class LRUCache {
         }
 
         /**
-         * 删除链表中最后一个节点，并返回该节点，时间 O(1)
+         * 删除链表中最后一个结点，并返回该结点，时间 O(1)
          */
         public Node removeLast() {
             if (tail.prev == head) {
@@ -108,22 +108,22 @@ class LRUCache {
     }
 
     public void put(int key, int val) {
-        // 先把新节点 x 做出来
+        // 先把新结点 x 做出来
         Node x = new Node(key, val);
         // key 已存在
         if (map.containsKey(key)) {
-            // 删除旧的节点
+            // 删除旧的结点
             cache.remove(map.get(key));
         } else {
             // cache 已满
             if (cap == cache.size) {
-                // 删除链表最后一个节点
+                // 删除链表最后一个结点
                 Node last = cache.removeLast();
-                // 同时删除 map 中映射到该节点的 key
+                // 同时删除 map 中映射到该结点的 key
                 map.remove(last.key);
             }
         }
-        // 新节点 x 插到头部
+        // 新结点 x 插到头部
         cache.addFirst(x);
         // 更新 map 中对应的数据
         map.put(key, x);

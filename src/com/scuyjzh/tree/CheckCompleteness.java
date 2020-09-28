@@ -20,7 +20,7 @@ class CheckCompleteness {
         while (!queue.isEmpty()) {
             TreeNode cur = queue.remove();
             if (hasNoChild) {
-                // 已经出现有空子树的节点，那么后面的必须为叶子节点
+                // 已经出现有空子树的结点，那么后面的必须为叶子结点
                 if (cur.left != null || cur.right != null) {
                     res = false;
                     break;
@@ -31,7 +31,7 @@ class CheckCompleteness {
                     queue.add(cur.left);
                     queue.add(cur.right);
                 }
-                // 如果左子树非空但右子树为空，说明已经出现空节点，那么之后必须都为空子树节点
+                // 如果左子树非空但右子树为空，说明已经出现空结点，那么之后必须都为空子树结点
                 else if (cur.left != null) {
                     queue.add(cur.left);
                     hasNoChild = true;
@@ -41,7 +41,7 @@ class CheckCompleteness {
                     res = false;
                     break;
                 }
-                // 如果左右子树都为空，那么之后必须也都为空子树节点
+                // 如果左右子树都为空，那么之后必须也都为空子树结点
                 else {
                     hasNoChild = true;
                 }

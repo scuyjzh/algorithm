@@ -3,7 +3,7 @@ package com.scuyjzh.tree;
 import java.util.*;
 
 /**
- * 给你一棵二叉搜索树，请你返回一棵平衡后的二叉搜索树，新生成的树应该与原来的树有着相同的节点值。
+ * 给你一棵二叉搜索树，请你返回一棵平衡后的二叉搜索树，新生成的树应该与原来的树有着相同的结点值。
  *
  * @author scuyjzh
  * @date 2020/9/21 9:21
@@ -29,7 +29,7 @@ class BalanceBinarySearchTree {
         if (start > end) {
             return null;
         }
-        // 中间节点为root
+        // 中间结点为root
         int mid = start + (end - start) / 2;
         TreeNode root = new TreeNode(sortList.get(mid));
         // 递归构造左右子树

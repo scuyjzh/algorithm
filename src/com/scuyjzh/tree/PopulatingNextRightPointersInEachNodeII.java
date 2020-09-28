@@ -3,7 +3,7 @@ package com.scuyjzh.tree;
 import java.util.*;
 
 /**
- * 给定一个二叉树，填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。
+ * 给定一个二叉树，填充它的每个 next 指针，让这个指针指向其下一个右侧结点。如果找不到下一个右侧结点，则将 next 指针设置为 NULL。
  * 初始状态下，所有 next 指针都被设置为 NULL。
  *
  * @author scuyjzh
@@ -74,14 +74,14 @@ class PopulatingNextRightPointersInEachNodeII {
         Node cur = root;
         while (cur != null) {
             // 遍历当前层的时候，为了方便操作在下一层前面添加一个哑结点
-            // （注意这里是访问当前层的节点，然后把下一层的节点串联成链表）
+            // （注意这里是访问当前层的结点，然后把下一层的结点串联成链表）
             Node dummy = new Node(0);
-            // pre 表示访下一层节点的前一个节点
+            // pre 表示访下一层结点的前一个结点
             Node pre = dummy;
             // 然后开始遍历当前层的链表
             while (cur != null) {
                 if (cur.left != null) {
-                    // 如果当前节点的左子节点不为空，就让 pre 节点的 next 指向它
+                    // 如果当前结点的左子结点不为空，就让 pre 结点的 next 指向它
                     pre.next = cur.left;
                     // 然后再更新 pre
                     pre = pre.next;
@@ -91,7 +91,7 @@ class PopulatingNextRightPointersInEachNodeII {
                     pre.next = cur.right;
                     pre = pre.next;
                 }
-                // 继续访问这一行的下一个节点
+                // 继续访问这一行的下一个结点
                 cur = cur.next;
             }
             // 把下一层串联成一个链表之后，让它赋值给 cur，

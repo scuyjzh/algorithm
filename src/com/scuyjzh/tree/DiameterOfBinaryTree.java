@@ -10,7 +10,7 @@ class DiameterOfBinaryTree {
     private int ans;
 
     private int depth(TreeNode node) {
-        // 访问到空节点了，返回0
+        // 访问到空结点了，返回0
         if (node == null) {
             return 0;
         }
@@ -20,14 +20,14 @@ class DiameterOfBinaryTree {
         int right = depth(node.right);
         // 计算d_node即L+R+1 并更新ans
         ans = Math.max(ans, left + right + 1);
-        // 返回该节点为根的子树的深度
+        // 返回该结点为根的子树的深度
         return Math.max(left, right) + 1;
     }
 
     public int diameterOfBinaryTree(TreeNode root) {
         this.ans = 1;
         this.depth(root);
-        // 一条路径的长度为该路径经过的节点数减一
+        // 一条路径的长度为该路径经过的结点数减一
         return this.ans - 1;
     }
 

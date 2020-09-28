@@ -15,7 +15,7 @@ class ConvertSortedArrayToBinarySearchTree {
         if (lo > hi) {
             return null;
         }
-        // 以升序数组的中间元素作为根节点 root
+        // 以升序数组的中间元素作为根结点 root
         int mid = lo + (hi - lo) / 2;
         TreeNode root = new TreeNode(nums[mid]);
         // 递归构建 root 的左子树与右子树

@@ -1,7 +1,7 @@
 package com.scuyjzh.tree;
 
 /**
- * 给出一个完全二叉树，求出该树的节点个数。
+ * 给出一个完全二叉树，求出该树的结点个数。
  *
  * @author scuyjzh
  * @date 2020/8/26 16:09

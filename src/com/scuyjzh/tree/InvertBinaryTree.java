@@ -17,7 +17,7 @@ class InvertBinaryTree {
     }
 
     private TreeNode invert(TreeNode root) {
-        // 递归函数的终止条件，节点为空时返回
+        // 递归函数的终止条件，结点为空时返回
         if (root == null) {
             return null;
         }
@@ -35,25 +35,25 @@ class InvertBinaryTree {
         if (root == null) {
             return null;
         }
-        // 将二叉树中的节点逐层放入队列中，再迭代处理队列中的元素
+        // 将二叉树中的结点逐层放入队列中，再迭代处理队列中的元素
         LinkedList<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
-            // 每次都从队列中拿一个节点，并交换这个节点的左右子树
+            // 每次都从队列中拿一个结点，并交换这个结点的左右子树
             TreeNode cur = queue.remove();
             TreeNode tmp = cur.left;
             cur.left = cur.right;
             cur.right = tmp;
-            // 如果当前节点的左子树不为空，则放入队列等待后续处理
+            // 如果当前结点的左子树不为空，则放入队列等待后续处理
             if (cur.left != null) {
                 queue.add(cur.left);
             }
-            // 如果当前节点的右子树不为空，则放入队列等待后续处理
+            // 如果当前结点的右子树不为空，则放入队列等待后续处理
             if (cur.right != null) {
                 queue.add(cur.right);
             }
         }
-        // 返回处理完的根节点
+        // 返回处理完的根结点
         return root;
     }
 

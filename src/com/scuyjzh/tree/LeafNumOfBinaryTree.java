@@ -3,7 +3,7 @@ package com.scuyjzh.tree;
 import java.util.*;
 
 /**
- * 给定一个二叉树，求出该树的叶子节点个数。
+ * 给定一个二叉树，求出该树的叶子结点个数。
  *
  * @author scuyjzh
  * @date 2020/8/14 2:22

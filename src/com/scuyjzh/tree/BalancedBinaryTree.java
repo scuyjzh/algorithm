@@ -38,7 +38,7 @@ class BalancedBinaryTree {
 
     private int recur(TreeNode root) {
         // 递归终止条件：
-        // 1.当越过叶子节点时，返回高度 0
+        // 1.当越过叶子结点时，返回高度 0
         // 2.当左（右）子树高度 left == -1 时，代表此子树的左（右）子树不是平衡树，因此直接返回 -1
         if (root == null) {
             return 0;
@@ -52,8 +52,8 @@ class BalancedBinaryTree {
             return -1;
         }
         // 递归返回值：
-        // 1.当节点 root 左/右子树的高度差 < 2：则返回以节点root为根节点的子树的最大高度，即节点 root 的左右子树中最大高度加 1 (max(left, right) + 1)
-        // 2.当节点 root 左/右子树的高度差 ≥ 2：则返回 -1，代表此子树不是平衡树
+        // 1.当结点 root 左/右子树的高度差 < 2：则返回以结点root为根结点的子树的最大高度，即结点 root 的左右子树中最大高度加 1 (max(left, right) + 1)
+        // 2.当结点 root 左/右子树的高度差 ≥ 2：则返回 -1，代表此子树不是平衡树
         return Math.abs(left - right) <= 1 ? Math.max(left, right) + 1 : -1;
     }
 

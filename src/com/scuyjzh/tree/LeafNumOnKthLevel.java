@@ -3,7 +3,7 @@ package com.scuyjzh.tree;
 import java.util.*;
 
 /**
- * 给定一个二叉树，求出该树第K层的叶子节点个数。
+ * 给定一个二叉树，求出该树第K层的叶子结点个数。
  *
  * @author scuyjzh
  * @date 2020/8/14 2:57
@@ -27,7 +27,7 @@ class LeafNumOnKthLevel {
             if (curLevel == k) {
                 break;
             }
-            // 将下一层节点入队
+            // 将下一层结点入队
             int cntNode = 0;
             while (cntNode < curLevelNodeTotal) {
                 cntNode++;
