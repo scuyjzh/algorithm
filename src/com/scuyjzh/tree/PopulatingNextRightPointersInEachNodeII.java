@@ -63,8 +63,6 @@ class PopulatingNextRightPointersInEachNodeII {
         return root;
     }
 
-    Node last = null, nextStart = null;
-
     /**
      * 方法二：使用已建立的 next 指针
      */
@@ -72,30 +70,34 @@ class PopulatingNextRightPointersInEachNodeII {
         if (root == null) {
             return null;
         }
-        Node start = root;
-        while (start != null) {
-            last = null;
-            nextStart = null;
-            for (Node p = start; p != null; p = p.next) {
-                if (p.left != null) {
-                    handle(p.left);
+        // cur 我们可以把它看做是每一层的链表
+        Node cur = root;
+        while (cur != null) {
+            // 遍历当前层的时候，为了方便操作在下一层前面添加一个哑结点
+            // （注意这里是访问当前层的节点，然后把下一层的节点串联成链表）
+            Node dummy = new Node(0);
+            // pre 表示访下一层节点的前一个节点
+            Node pre = dummy;
+            // 然后开始遍历当前层的链表
+            while (cur != null) {
+                if (cur.left != null) {
+                    // 如果当前节点的左子节点不为空，就让 pre 节点的 next 指向它
+                    pre.next = cur.left;
+                    // 然后再更新 pre
+                    pre = pre.next;
                 }
-                if (p.right != null) {
-                    handle(p.right);
+                // 同理参照左子树
+                if (cur.right != null) {
+                    pre.next = cur.right;
+                    pre = pre.next;
                 }
+                // 继续访问这一行的下一个节点
+                cur = cur.next;
             }
-            start = nextStart;
+            // 把下一层串联成一个链表之后，让它赋值给 cur，
+            // 后续继续循环，直到 cur 为空为止
+            cur = dummy.next;
         }
         return root;
-    }
-
-    private void handle(Node p) {
-        if (last != null) {
-            last.next = p;
-        }
-        if (nextStart == null) {
-            nextStart = p;
-        }
-        last = p;
     }
 }
