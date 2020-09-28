@@ -14,7 +14,7 @@ class PathSumIII {
         return helper(root, sum, new int[1000], 0);
     }
 
-    public int helper(TreeNode root, int sum, int[] array, int p) {
+    private int helper(TreeNode root, int sum, int[] array, int p) {
         if (root == null) {
             return 0;
         }
