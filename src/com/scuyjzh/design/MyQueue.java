@@ -10,7 +10,7 @@ import java.util.*;
  * empty() -- 返回队列是否为空。
  *
  * @author scuyjzh
- * @date 2020/9/17 17:41
+ * @version 1.0
  */
 class MyQueue {
     private Deque<Integer> pushStack;

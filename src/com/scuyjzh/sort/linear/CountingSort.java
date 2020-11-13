@@ -10,7 +10,7 @@ import java.util.*;
  * 4.反向填充目标数组：将每个元素i放在新数组的第C[i]项，每放一个元素就将C[i]减去1
  *
  * @author scuyjzh
- * @date 2020/8/10 15:57
+ * @version 1.0
  */
 class CountingSort {
     public int[] sort(int[] a) {

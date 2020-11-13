@@ -10,7 +10,7 @@ import java.util.*;
  * 4.从不是空的桶子里把项目再放回原来的序列中。
  *
  * @author scuyjzh
- * @date 2020/8/10 16:44
+ * @version 1.0
  */
 class BucketSort {
     public void sort(int[] arr) {

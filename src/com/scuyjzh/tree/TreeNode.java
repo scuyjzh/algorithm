@@ -4,7 +4,7 @@ package com.scuyjzh.tree;
  * Definition for a binary tree node.
  *
  * @author scuyjzh
- * @date 2020/8/13 1:37
+ * @version 1.0
  */
 class TreeNode {
     public int val;

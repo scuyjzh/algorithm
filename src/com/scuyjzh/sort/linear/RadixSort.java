@@ -8,7 +8,7 @@ import java.util.*;
  * 基数排序的方式可以采用LSD（Least significant digital）或MSD（Most significant digital），LSD的排序方式由键值的最右边开始，而MSD则相反，由键值的最左边开始。
  *
  * @author scuyjzh
- * @date 2020/8/7 15:27
+ * @version 1.0
  */
 class RadixSort {
     public void sort(int[] arr) {

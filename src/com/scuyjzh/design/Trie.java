@@ -4,7 +4,7 @@ package com.scuyjzh.design;
  * 实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。
  *
  * @author scuyjzh
- * @date 2020/9/16 19:56
+ * @version 1.0
  */
 class Trie {
     class TrieNode {

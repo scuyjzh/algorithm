@@ -7,7 +7,7 @@ package com.scuyjzh.search;
  * 搜索键值 = left + parseInt( ( key - data[left] ) / ( data[right] - data[left] ) )*( right - left ) )
  *
  * @author scuyjzh
- * @date 2020/8/11 16:03
+ * @version 1.0
  */
 class InterpolationSearch {
     public int search(int[] arr, int key) {

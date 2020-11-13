@@ -7,7 +7,7 @@ package com.scuyjzh.search;
  * 这种搜索算法每一次比较都使搜索范围缩小一半。
  *
  * @author scuyjzh
- * @date 2020/6/29 11:25
+ * @version 1.0
  */
 class BinarySearch {
     public int search(int[] arr, int key) {

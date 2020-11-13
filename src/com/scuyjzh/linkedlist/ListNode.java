@@ -1,8 +1,10 @@
 package com.scuyjzh.linkedlist;
 
 /**
+ * Definition for singly-linked list.
+ *
  * @author scuyjzh
- * @date 2020/8/25 10:54
+ * @version 1.0
  */
 class ListNode {
     public int val;

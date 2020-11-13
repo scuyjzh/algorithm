@@ -7,7 +7,7 @@ import java.util.HashMap;
  * It should support the following operations: get and put.
  *
  * @author scuyjzh
- * @date 2020/9/16 18:58
+ * @version 1.0
  */
 class LRUCache {
     class Node {

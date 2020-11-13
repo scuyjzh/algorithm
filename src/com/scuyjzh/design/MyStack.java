@@ -10,7 +10,7 @@ import java.util.*;
  * empty() -- 返回栈是否为空
  *
  * @author scuyjzh
- * @date 2020/9/17 17:40
+ * @version 1.0
  */
 class MyStack {
     private Deque<Integer> queue;
