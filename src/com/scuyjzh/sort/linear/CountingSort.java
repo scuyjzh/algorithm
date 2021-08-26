@@ -3,48 +3,64 @@ package com.scuyjzh.sort.linear;
 import java.util.*;
 
 /**
- * 计数排序是一种稳定的线性时间排序算法。算法的步骤如下：
- * 1.找出待排序的数组中最大和最小的元素
- * 2.统计数组中每个值为i的元素出现的次数，存入数组C的第i项
- * 3.对所有的计数累加（从C中的第一个元素开始，每一项和前一项相加）
- * 4.反向填充目标数组：将每个元素i放在新数组的第C[i]项，每放一个元素就将C[i]减去1
- *
- * @author scuyjzh
- * @version 1.0
+ * 计数排序（Counting sort）是一种稳定的线性时间排序算法。该算法于1954年由 Harold H. Seward 提出。
+ * <p>
+ * 从计数排序的实现代码中，可以看到，每次遍历都是进行 n 次或者 k 次，所以计数排序的时间复杂度为 O(n+k)，k 表示数据的范围大小。
+ * 用到的空间主要是长度为 k 的计数数组和长度为 n 的结果数组，所以空间复杂度也是 O(n+k)。
+ * <p>
+ * 计数排序只适用于数据范围不大的场景。
  */
 class CountingSort {
-    public int[] sort(int[] a) {
-        int[] b = new int[a.length];
-        int max = a[0], min = a[0];
-        for (int i : a) {
-            if (i > max) {
-                max = i;
+    /**
+     * 倒序遍历的计数排序
+     */
+    public void countingSort(int[] arr) {
+        // 防止数组越界
+        if (arr == null || arr.length <= 1) {
+            return;
+        }
+        // 找到最大值，最小值
+        int max = arr[0];
+        int min = arr[0];
+        for (int i = 1; i < arr.length; ++i) {
+            if (arr[i] > max) {
+                max = arr[i];
+            } else if (arr[i] < min) {
+                min = arr[i];
             }
-            if (i < min) {
-                min = i;
-            }
         }
-        // 这里k的大小是要排序的数组中，元素大小的极值差+1
-        int k = max - min + 1;
-        int[] c = new int[k];
-        for (int i = 0; i < a.length; ++i) {
-            // 优化过的地方，减小了数组c的大小
-            c[a[i] - min] += 1;
+        // 确定计数范围
+        int range = max - min + 1;
+        // 建立长度为 range 的数组，下标 0~range-1 对应数字 min~max
+        int[] counting = new int[range];
+        // 遍历 arr 中的每个元素
+        for (int element : arr) {
+            // 将每个整数出现的次数统计到计数数组中对应下标的位置，这里需要将每个元素减去 min，才能映射到 0～range-1 范围内
+            counting[element - min]++;
         }
-        for (int i = 1; i < c.length; ++i) {
-            c[i] = c[i] + c[i - 1];
+        // 每个元素在结果数组中的最后一个下标位置 = 前面比自己小的数字的总数 + 自己的数量 - 1。将 counting[0] 先减去 1，后续 counting 直接累加即可
+        counting[0]--;
+        for (int i = 1; i < range; ++i) {
+            // 将 counting 计算成当前数字在结果中的最后一个下标位置。位置 = 前面比自己小的数字的总数 + 自己的数量 - 1
+            // 由于 counting[0] 已经减了 1，所以后续的减 1 可以省略
+            counting[i] += counting[i - 1];
         }
-        for (int i = a.length - 1; i >= 0; --i) {
-            // 按存取的方式取出c的元素
-            b[--c[a[i] - min]] = a[i];
+        int[] result = new int[arr.length];
+        // 从后往前遍历数组，通过 counting 中记录的下标位置，将 arr 中的元素放到 result 数组中
+        for (int i = arr.length - 1; i >= 0; --i) {
+            // counting[arr[i] - min] 表示此元素在结果数组中的下标
+            result[counting[arr[i] - min]] = arr[i];
+            // 更新 counting[arr[i] - min]，指向此元素的前一个下标
+            counting[arr[i] - min]--;
         }
-        return b;
+        // 将结果赋值回 arr
+        System.arraycopy(result, 0, arr, 0, arr.length);
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[]{1201, 292, 121, 72, 233, 44, 12};
-        CountingSort countingSort = new CountingSort();
-        arr = countingSort.sort(arr);
+        int[] arr;
+        arr = new int[]{5, 8, 1, 2, 7, 4, 8, 2, 2, 4};
+        new CountingSort().countingSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 }
