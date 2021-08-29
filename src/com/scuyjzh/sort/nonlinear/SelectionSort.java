@@ -86,6 +86,9 @@ class SelectionSort {
             temp = arr[lastIndex];
             arr[lastIndex] = arr[maxIndex];
             arr[maxIndex] = temp;
+
+            // 调试语句
+            System.out.println("round " + (i + 1) + ": " + Arrays.toString(arr));
         }
     }
 
@@ -93,10 +96,10 @@ class SelectionSort {
         int[] arr;
         arr = new int[]{8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
         new SelectionSort().selectionSort1(arr);
-        System.out.println(Arrays.toString(arr));
+        System.out.println("sorted: " + Arrays.toString(arr));
 
         arr = new int[]{8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
         new SelectionSort().selectionSort2(arr);
-        System.out.println(Arrays.toString(arr));
+        System.out.println("sorted: " + Arrays.toString(arr));
     }
 }
