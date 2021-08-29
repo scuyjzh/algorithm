@@ -16,9 +16,9 @@ import java.util.*;
  */
 class RadixSort {
     /**
-     * 基数排序的 LSD 实现
+     * LSD 方式的基数排序
      */
-    public void radixSort(int[] arr) {
+    public void radixSort1(int[] arr) {
         if (arr == null) {
             return;
         }
@@ -76,7 +76,7 @@ class RadixSort {
     /**
      * 对包含负数的数组进行基数排序
      */
-    public void radixSortForNegative(int[] arr) {
+    public void radixSort2(int[] arr) {
         /*
          * 如果数组中包含负数，如何进行基数排序呢？
          * 很容易想到一种思路：将数组中的每个元素都加上一个合适的正整数，使其全部变成非负整数，等到排序完成后，再减去之前加的这个数就可以了。
@@ -141,14 +141,79 @@ class RadixSort {
         }
     }
 
+    /**
+     * MSD 方式的基数排序
+     */
+    public void radixSort3(int[] arr) {
+        /*
+         * 使用 MSD 时，下一轮排序只应该发生在当前轮次基数相等的数字之间，对每一位基数进行递归排序的过程中会产生许多临时变量。
+         * 相比 LSD，MSD 的基数排序显得较为复杂。因为每次对基数进行排序后，无法将所有的结果一视同仁地进行下一轮排序，否则下一轮排序会破坏本次排序的结果。
+         */
+        if (arr == null) {
+            return;
+        }
+        // 找到最大值
+        int max = 0;
+        for (int value : arr) {
+            if (Math.abs(value) > max) {
+                max = Math.abs(value);
+            }
+        }
+        // 计算最大长度
+        int maxDigitLength = 0;
+        while (max != 0) {
+            maxDigitLength++;
+            max /= 10;
+        }
+        radixSort(arr, 0, arr.length - 1, maxDigitLength);
+    }
+
+    /**
+     * 对 arr 数组中的 [start, end] 区间进行基数排序
+     */
+    private void radixSort(int[] arr, int start, int end, int position) {
+        if (start == end || position == 0) {
+            return;
+        }
+        // 使用计数排序算法对基数（-9~9）进行排序，下标 [0, 18] 对应基数 [-9, 9]
+        int[] counting = new int[19];
+        int[] result = new int[end - start + 1];
+        int dev = (int) Math.pow(10, position - 1);
+        for (int i = start; i <= end; ++i) {
+            // MSD, 从最高位开始
+            int radix = arr[i] / dev % 10 + 9;
+            counting[radix]++;
+        }
+        for (int j = 1; j < counting.length; ++j) {
+            counting[j] += counting[j - 1];
+        }
+        // 拷贝 counting，用于待会的递归
+        int[] countingCopy = new int[counting.length];
+        System.arraycopy(counting, 0, countingCopy, 0, counting.length);
+        for (int i = end; i >= start; --i) {
+            int radix = arr[i] / dev % 10 + 9;
+            result[--counting[radix]] = arr[i];
+        }
+        // 计数排序完成后，将结果拷贝回 arr 数组
+        System.arraycopy(result, 0, arr, start, result.length);
+        // 对 [start, end] 区间内的每一位基数进行递归排序
+        for (int i = 0; i < counting.length; i++) {
+            radixSort(arr, i == 0 ? start : start + countingCopy[i - 1], start + countingCopy[i] - 1, position - 1);
+        }
+    }
+
     public static void main(String[] args) {
         int[] arr;
         arr = new int[]{1200, 292, 121, 72, 233, 44, 12};
-        new RadixSort().radixSort(arr);
+        new RadixSort().radixSort1(arr);
         System.out.println("sorted: " + Arrays.toString(arr));
 
         arr = new int[]{1200, 292, -121, 72, 233, -44, 12};
-        new RadixSort().radixSortForNegative(arr);
+        new RadixSort().radixSort2(arr);
+        System.out.println("sorted: " + Arrays.toString(arr));
+
+        arr = new int[]{1200, 292, -121, 72, 233, -44, 12};
+        new RadixSort().radixSort3(arr);
         System.out.println("sorted: " + Arrays.toString(arr));
     }
 }
