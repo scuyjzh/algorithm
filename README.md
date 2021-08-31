@@ -56,10 +56,11 @@ refer to [LeetBook](https://leetcode-cn.com/leetbook/detail/sort-algorithms/)
 
 ### O(nlogn)
 
-| 算法     | 题解                                                    | 时间复杂度     | 空间复杂度 | 稳定性 |
-| -------- | ------------------------------------------------------- | -------------- | ---------- | ------ |
-| 希尔排序 | [Java](./src/com/scuyjzh/sort/nonlinear/ShellSort.java) | *O*(*n*^1.3)   | *O*(1)     | 不稳定 |
-| 堆排序   | [Java](./src/com/scuyjzh/sort/nonlinear/HeapSort.java)  | *O*(*n*log*n*) | *O*(1)     | 不稳定 |
+| 算法     | 题解                                                    | 时间复杂度     | 空间复杂度  | 稳定性 |
+| -------- | ------------------------------------------------------- | -------------- | ----------- | ------ |
+| 希尔排序 | [Java](./src/com/scuyjzh/sort/nonlinear/ShellSort.java) | *O*(*n*^1.3)   | *O*(1)      | 不稳定 |
+| 堆排序   | [Java](./src/com/scuyjzh/sort/nonlinear/HeapSort.java)  | *O*(*n*log*n*) | *O*(1)      | 不稳定 |
+| 快速排序 | [Java](./src/com/scuyjzh/sort/nonlinear/QuickSort.java) | *O*(*n*log*n*) | *O*(log*n*) | 不稳定 |
 
 #### 希尔排序
 
@@ -73,6 +74,16 @@ refer to [LeetBook](https://leetcode-cn.com/leetbook/detail/sort-algorithms/)
 - 用数列构建出一个大顶堆，取出堆顶的数字；
 - 调整剩余的数字，构建出新的大顶堆，再次取出堆顶的数字；
 - 循环往复，完成整个排序。
+
+#### 快速排序
+
+快速排序算法是面试中考察的重点，也是应用最广泛的排序算法。排序过程是：
+
+- 从数组中取出一个数，称之为基数（`pivot`）；
+- 遍历数组，将比基数大的数字放到它的右边，比基数小的数字放到它的左边。遍历完成后，数组被分成了左右两个区域；
+- 将左右两个区域视为两个数组，重复前两个步骤，直到排序完成。
+
+快速排序中最重要的是分区算法，最常用的分区算法是双指针分区算法，优点是一次交换可以完成两个数的分区。
 
 ### O(n)
 
