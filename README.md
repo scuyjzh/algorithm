@@ -5,22 +5,22 @@
 ## Table of Contents
 
 - [Sort](#Sort)
-  * [O(n^2)](#on2)
-  * [O(nlogn)](#onlogn)
-  * [O(n)](#on)
+  * [*O*(*n*<sup>2</sup>)](#on2)
+  * [O(*n*log*n*)](#onlogn)
+  * [O(*n*)](#on)
 - [Search](#Search)
 
 ## Sort
 
 refer to [LeetBook](https://leetcode-cn.com/leetbook/detail/sort-algorithms/)
 
-### O(n^2)
+### *O*(*n*<sup>2</sup>)
 
-| 算法     | 题解                                                        | 时间复杂度 | 空间复杂度 | 稳定性 |
-| -------- | ----------------------------------------------------------- | ---------- | ---------- | ------ |
-| 冒泡排序 | [Java](./src/com/scuyjzh/sort/nonlinear/BubbleSort.java)    | *O*(*n*^2) | *O*(1)     | 稳定   |
-| 选择排序 | [Java](./src/com/scuyjzh/sort/nonlinear/SelectionSort.java) | *O*(*n*^2) | *O*(1)     | 不稳定 |
-| 插入排序 | [Java](./src/com/scuyjzh/sort/nonlinear/InsertionSort.java) | *O*(*n*^2) | *O*(1)     | 稳定   |
+| 算法     | 题解                                                        | 时间复杂度           | 空间复杂度 | 稳定性 |
+| -------- | ----------------------------------------------------------- | -------------------- | ---------- | ------ |
+| 冒泡排序 | [Java](./src/com/scuyjzh/sort/nonlinear/BubbleSort.java)    | *O*(*n*<sup>2</sup>) | *O*(1)     | 稳定   |
+| 选择排序 | [Java](./src/com/scuyjzh/sort/nonlinear/SelectionSort.java) | *O*(*n*<sup>2</sup>) | *O*(1)     | 不稳定 |
+| 插入排序 | [Java](./src/com/scuyjzh/sort/nonlinear/InsertionSort.java) | *O*(*n*<sup>2</sup>) | *O*(1)     | 稳定   |
 
 #### 冒泡排序
 
@@ -45,7 +45,7 @@ refer to [LeetBook](https://leetcode-cn.com/leetbook/detail/sort-algorithms/)
 
 #### 相同点
 
-- 时间复杂度都是 *O*(*n*^2)，空间复杂度都是 *O*(1)。
+- 时间复杂度都是 *O*(*n*<sup>2</sup>)，空间复杂度都是 *O*(1)。
 
 
 #### 不同点
@@ -54,17 +54,18 @@ refer to [LeetBook](https://leetcode-cn.com/leetbook/detail/sort-algorithms/)
 - 在这三个排序算法中，选择排序交换的次数是最少的；
 - 在数组几乎有序的情况下，插入排序的时间复杂度接近线性级别。
 
-### O(nlogn)
+### *O*(*n*log*n*)
 
-| 算法     | 题解                                                    | 时间复杂度     | 空间复杂度  | 稳定性 |
-| -------- | ------------------------------------------------------- | -------------- | ----------- | ------ |
-| 希尔排序 | [Java](./src/com/scuyjzh/sort/nonlinear/ShellSort.java) | *O*(*n*^1.3)   | *O*(1)      | 不稳定 |
-| 堆排序   | [Java](./src/com/scuyjzh/sort/nonlinear/HeapSort.java)  | *O*(*n*log*n*) | *O*(1)      | 不稳定 |
-| 快速排序 | [Java](./src/com/scuyjzh/sort/nonlinear/QuickSort.java) | *O*(*n*log*n*) | *O*(log*n*) | 不稳定 |
+| 算法     | 题解                                                    | 时间复杂度             | 空间复杂度  | 稳定性 |
+| -------- | ------------------------------------------------------- | ---------------------- | ----------- | ------ |
+| 希尔排序 | [Java](./src/com/scuyjzh/sort/nonlinear/ShellSort.java) | *O*(*n*<sup>1.3</sup>) | *O*(1)      | 不稳定 |
+| 堆排序   | [Java](./src/com/scuyjzh/sort/nonlinear/HeapSort.java)  | *O*(*n*log*n*)         | *O*(1)      | 不稳定 |
+| 快速排序 | [Java](./src/com/scuyjzh/sort/nonlinear/QuickSort.java) | *O*(*n*log*n*)         | *O*(log*n*) | 不稳定 |
+| 归并排序 | [Java](./src/com/scuyjzh/sort/nonlinear/MergeSort.java) | *O*(*n*log*n*)         | *O*(*n*)    | 稳定   |
 
 #### 希尔排序
 
-- 希尔排序是一个承上启下的算法，通过交换间隔较远的元素，使得一次交换能消除一个以上的逆序对，打破了在空间复杂度为 *O*(1) 的情况下，时间复杂度 *O*(*n*^2) 的魔咒。它启发出了后续一系列时间复杂度为 *O*(*n*log*n*)，空间复杂度为 *O*(1) 的排序算法。
+- 希尔排序是一个承上启下的算法，通过交换间隔较远的元素，使得一次交换能消除一个以上的逆序对，打破了在空间复杂度为 *O*(1) 的情况下，时间复杂度 *O*(*n*<sup>2</sup>) 的魔咒。它启发出了后续一系列时间复杂度为 *O*(*n*log*n*)，空间复杂度为 *O*(1) 的排序算法。
 - 希尔排序本质上是插入排序的优化，先对间隔较大的元素进行插入排序，完成宏观调控，然后逐步缩小间隔，最后一轮一定是间隔为 1 的排序，也就是插入排序。间隔在希尔排序中被称为「增量」，增量序列不同，希尔排序的效率也不同。
 
 #### 堆排序
@@ -85,7 +86,22 @@ refer to [LeetBook](https://leetcode-cn.com/leetbook/detail/sort-algorithms/)
 
 快速排序中最重要的是分区算法，最常用的分区算法是双指针分区算法，优点是一次交换可以完成两个数的分区。
 
-### O(n)
+#### 归并排序
+
+- 归并排序分为两步：二分拆数组、不断合并两个有序列表。
+- 归并的优化主要在于减少临时空间的开辟。
+- 不存在空间复杂度为 *O*(1) 的归并排序。
+
+#### 相同点
+
+- 平均时间复杂度都在 *O*(*n*) 到 *O*(*n*<sup>2</sup>) 之间。
+
+#### 不同点
+
+- 希尔排序、堆排序、快速排序是不稳定的，归并排序是稳定的。
+- 希尔排序的平均复杂度界于 *O*(*n*) 到 *O*(*n*<sup>2</sup>) 之间，普遍认为它最好的时间复杂度为 *O*(*n*<sup>1.3</sup>)，希尔排序的空间复杂度为 *O*(1)；堆排序的时间复杂度为 *O*(*n*log*n*)，空间复杂度为 *O*(1)；快速排序的平均时间复杂度为 *O*(*n*log*n*)，平均空间复杂度为 *O*(log*n*)；归并排序的时间复杂度是 *O*(*n*log*n*)，空间复杂度是 *O*(*n*)。
+
+### *O*(*n*)
 
 | 算法     | 题解                                                    | 时间复杂度        | 空间复杂度   | 稳定性 |
 | -------- | ------------------------------------------------------- | ----------------- | ------------ | ------ |
@@ -95,6 +111,6 @@ refer to [LeetBook](https://leetcode-cn.com/leetbook/detail/sort-algorithms/)
 
 ## Search
 
-| 算法     | 题解                                                | 时间复杂度   | 空间复杂度 |
-| -------- | --------------------------------------------------- | ------------ | ---------- |
-| 二分查找 | [Java](./src/com/scuyjzh/search/BinarySearch.java) | *O*(log *n*) | *O*(1)     |
+| 算法     | 题解                                               | 时间复杂度  | 空间复杂度 |
+| -------- | -------------------------------------------------- | ----------- | ---------- |
+| 二分查找 | [Java](./src/com/scuyjzh/search/BinarySearch.java) | *O*(log*n*) | *O*(1)     |

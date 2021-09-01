@@ -3,69 +3,74 @@ package com.scuyjzh.sort.nonlinear;
 import java.util.*;
 
 /**
- * 归并排序是利用归并的思想实现的排序方法，该算法采用经典的分治（divide-and-conquer）策略（分治法将问题分(divide)成一些小的问题然后递归求解，而治(conquer)的阶段则将分的阶段得到的各答案"修补"在一起，即分而治之)。
- * 递归法（Top-down）原理如下：
- * 1.申请空间，使其大小为两个已经排序序列之和，该空间用来存放合并后的序列
- * 2.设定两个指针，最初位置分别为两个已经排序序列的起始位置
- * 3.比较两个指针所指向的元素，选择相对小的元素放入到合并空间，并移动指针到下一位置
- * 4.重复步骤3直到某一指针到达序列尾
- * 5.将另一序列剩下的所有元素直接复制到合并序列尾
- *
- * @author scuyjzh
- * @date 2020/7/7 15:20
+ * 归并排序（Merge sort），是建立在归并操作上的一种有效的排序算法。1945年由约翰·冯·诺伊曼首次提出。
+ * 该算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。
+ * <p>
+ * 归并排序的复杂度比较容易分析，拆分数组的过程中，会将数组拆分 logN 次，每层执行的比较次数都约等于 N 次，所以时间复杂度是 O(NlogN)。
+ * 空间复杂度是 O(N)，主要占用空间的就是在排序前创建的长度为 N 的 result 数组。
  */
 class MergeSort {
-    public void sort(int[] arr) {
-        // 在排序前，先建好一个长度等于原数组长度的临时数组，避免递归中频繁开辟空间
-        int[] temp = new int[arr.length];
-        sort(arr, 0, arr.length - 1, temp);
-    }
-
-    private void sort(int[] arr, int left, int right, int[] temp) {
-        if (left < right) {
-            int mid = left + (right - left) / 2;
-            // 左边归并排序，使得左子序列有序
-            sort(arr, left, mid, temp);
-            // 右边归并排序，使得右子序列有序
-            sort(arr, mid + 1, right, temp);
-            // 将两个有序子数组合并
-            merge(arr, left, mid, right, temp);
+    public void mergeSort(int[] arr) {
+        if (arr == null || arr.length == 0) {
+            return;
         }
+        int[] result = mergeSort(arr, 0, arr.length - 1);
+        // 将结果拷贝到 arr 数组中
+        System.arraycopy(result, 0, arr, 0, result.length);
     }
 
-    private void merge(int[] arr, int left, int mid, int right, int[] temp) {
-        // 左序列指针
-        int i = left;
-        // 右序列指针
-        int j = mid + 1;
-        // 临时数组指针
-        int t = 0;
-        while (i <= mid && j <= right) {
-            if (arr[i] <= arr[j]) {
-                temp[t++] = arr[i++];
+    /**
+     * 对 arr 的 [start, end] 区间归并排序
+     */
+    private int[] mergeSort(int[] arr, int start, int end) {
+        // 只剩下一个数字，停止拆分，返回单个数字组成的数组
+        if (start == end) {
+            return new int[]{arr[start]};
+        }
+        int middle = (start + end) / 2;
+        // 拆分左边区域
+        int[] left = mergeSort(arr, start, middle);
+        // 拆分右边区域
+        int[] right = mergeSort(arr, middle + 1, end);
+        // 合并左右区域
+        return merge(left, right);
+    }
+
+    /**
+     * 将两个有序数组合并为一个有序数组
+     */
+    private int[] merge(int[] arr1, int[] arr2) {
+        /*
+         * 分析归并的过程可知，归并排序是一种稳定的排序算法。其中，对算法稳定性非常重要的一行代码是：
+         * if (arr[index1] <= arr[index2]) {
+         *     result[index1 + index2] = arr[index1++];
+         * }
+         * 在这里通过 arr[index1] <= arr[index2] 来合并两个有序数组，保证了原数组中，相同的元素相对顺序不会变化，
+         * 如果这里的比较条件写成了 arr[index1] < arr[index2]，则归并排序将变得不稳定。
+         */
+        int[] result = new int[arr1.length + arr2.length];
+        int index1 = 0, index2 = 0;
+        while (index1 < arr1.length && index2 < arr2.length) {
+            if (arr1[index1] <= arr2[index2]) {
+                result[index1 + index2] = arr1[index1++];
             } else {
-                temp[t++] = arr[j++];
+                result[index1 + index2] = arr2[index2++];
             }
         }
-        while (i <= mid) {
-            // 将左边剩余元素填充进temp中
-            temp[t++] = arr[i++];
+        // 将剩余数字补到结果数组之后
+        while (index1 < arr1.length) {
+            result[index1 + index2] = arr1[index1++];
         }
-        while (j <= right) {
-            // 将右序列剩余元素填充进temp中
-            temp[t++] = arr[j++];
+        while (index2 < arr2.length) {
+            result[index1 + index2] = arr2[index2++];
         }
-        // 将temp中的元素全部拷贝到原数组中
-        t = 0;
-        while (left <= right) {
-            arr[left++] = temp[t++];
-        }
+        return result;
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[]{8, 4, 5, 7, 1, 3, 6, 2};
-        MergeSort mergeSort = new MergeSort();
-        mergeSort.sort(arr);
+        int[] arr;
+        arr = new int[]{8, 4, 5, 7, 1, 3, 6, 2};
+        new MergeSort().mergeSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 }
