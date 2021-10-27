@@ -1,13 +1,21 @@
 package com.scuyjzh.design;
 
-import java.util.HashMap;
+import java.util.*;
 
 /**
- * Design and implement a data structure for Least Recently Used (LRU) cache.
- * It should support the following operations: get and put.
+ * LRU 缓存机制
  *
- * @author scuyjzh
- * @version 1.0
+ * 运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制 。
+ * 实现 LRUCache 类：
+ *   • LRUCache(int capacity) 以正整数作为容量 capacity 初始化 LRU
+ *     缓存。
+ *   • int get(int key) 如果关键字 key 存在于缓存中，则返回关键字
+ *     的值，否则返回 -1 。
+ *   • void put(int key, int value) 如果关键字已经存在，则变更其数
+ *     据值；如果关键字不存在，则插入该组「关键字-值」。当缓存容量
+ *     达到上限时，它应该在写入新数据之前删除最久未使用的数据值，
+ *     从而为新的数据值留出空间。
+ * 进阶：你是否可以在 O(1) 时间复杂度内完成这两种操作？
  */
 class LRUCache {
     class Node {
@@ -22,7 +30,7 @@ class LRUCache {
 
     class DoubleList {
         /**
-         * 虚拟头尾结点
+         * 虚拟头、尾结点
          */
         private Node head, tail;
         /**
@@ -39,7 +47,7 @@ class LRUCache {
         }
 
         /**
-         * 在链表头部添加结点 x，时间 O(1)
+         * 在链表头部添加结点 x，时间复杂度 O(1)
          */
         public void addFirst(Node x) {
             x.next = head.next;
@@ -50,7 +58,7 @@ class LRUCache {
         }
 
         /**
-         * 删除链表中的 x 结点（x 一定存在），时间 O(1)
+         * 删除链表中的 x 结点（x 一定存在），时间复杂度 O(1)
          */
         public void remove(Node x) {
             x.prev.next = x.next;
@@ -59,7 +67,7 @@ class LRUCache {
         }
 
         /**
-         * 删除链表中最后一个结点，并返回该结点，时间 O(1)
+         * 删除链表中最后一个结点，并返回该结点，时间复杂度 O(1)
          */
         public Node removeLast() {
             if (tail.prev == head) {
@@ -71,7 +79,7 @@ class LRUCache {
         }
 
         /**
-         * 返回链表长度，时间 O(1)
+         * 返回链表长度，时间复杂度 O(1)
          */
         public int size() {
             return size;
@@ -81,7 +89,7 @@ class LRUCache {
     /**
      * 缓存容量
      */
-    private int cap;
+    private int capacity;
     /**
      * key 映射到 Node(key, val)
      */
@@ -92,7 +100,7 @@ class LRUCache {
     private DoubleList cache;
 
     public LRUCache(int capacity) {
-        this.cap = capacity;
+        this.capacity = capacity;
         map = new HashMap<>();
         cache = new DoubleList();
     }
@@ -116,7 +124,7 @@ class LRUCache {
             cache.remove(map.get(key));
         } else {
             // cache 已满
-            if (cap == cache.size) {
+            if (capacity == cache.size) {
                 // 删除链表最后一个结点
                 Node last = cache.removeLast();
                 // 同时删除 map 中映射到该结点的 key
